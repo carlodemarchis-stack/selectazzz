@@ -6,7 +6,7 @@
 <title>Selectazzz · Carlo De Marchis</title>
 <meta name="description" content="Selectazzz: Carlo De Marchis&#x27;s selector sets, mostly vinyl, now hybrid. 73 sets since 2022.">
 <link rel="canonical" href="https://selectazzz.carlodemarchis.it/">
-<meta name="theme-color" content="#ecebe6">
+<meta name="theme-color" content="#1b1613">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://selectazzz.carlodemarchis.it/">
 <meta property="og:title" content="Selectazzz · Carlo De Marchis">
@@ -18,12 +18,12 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="site.css?v=7">
-<link rel="stylesheet" href="themes/paper.css?v=7">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Righteous&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css?v=9">
+<link rel="stylesheet" href="themes/tono.css?v=9">
 
 </head>
-<body class="t-paper">
+<body class="t-tono">
 <header class="bar">
   <a class="logo" href="./">selectazzz</a>
   <nav class="m"><a href="#about">About</a><a href="#sets">Sets</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
@@ -75,12 +75,16 @@
 </div>
 <script>
 // Next Thursday that is not the first Thursday of its month (the residency's usual pattern).
+// Dates Carlo has confirmed (residency.confirmed) are shown as "Next", the rest as "Next, usually".
 (function () {
+  const confirmed = ["2026-11-26"];
   const d = new Date(); d.setHours(0, 0, 0, 0);
   for (let i = 0; i < 21; i++, d.setDate(d.getDate() + 1)) {
     if (d.getDay() === 4 && d.getDate() > 7) {
+      const iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
       const el = document.getElementById('next');
-      el.textContent = 'Next, usually: ' + d.toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric', month: 'short'});
+      el.textContent = (confirmed.includes(iso) ? 'Next: ' : 'Next, usually: ') +
+        d.toLocaleDateString('en-GB', {weekday: 'short', day: 'numeric', month: 'short'});
       el.hidden = false; return;
     }
   }

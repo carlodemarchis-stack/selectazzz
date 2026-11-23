@@ -49,6 +49,7 @@
   background: linear-gradient(transparent, rgba(0, 0, 0, .78)); font: 400 20px/1.15 var(--display);
   text-transform: lowercase; letter-spacing: 0; color: var(--ink); }
 .grid figcaption a:hover { color: var(--hot); }
+.grid figure.contain figcaption { position: static; background: none; padding: 10px 0 0; }
 .lk { border-top-color: var(--rule); }
 .lk span:nth-child(2) { font-family: var(--display); font-size: 24px; }
 @media (max-width: 860px) { .hero { min-height: 0; padding: 120px 0 90px; } .hp figcaption { right: 18px; } }

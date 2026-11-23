@@ -102,12 +102,16 @@ def residency():
 </div>
 <script>
 // Next Thursday that is not the first Thursday of its month (the residency's usual pattern).
+// Dates Carlo has confirmed (residency.confirmed) are shown as "Next", the rest as "Next, usually".
 (function () {{
+  const confirmed = {json.dumps(r.get("confirmed", []))};
   const d = new Date(); d.setHours(0, 0, 0, 0);
   for (let i = 0; i < 21; i++, d.setDate(d.getDate() + 1)) {{
     if (d.getDay() === 4 && d.getDate() > 7) {{
+      const iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
       const el = document.getElementById('next');
-      el.textContent = 'Next, usually: ' + d.toLocaleDateString('en-GB', {{weekday: 'short', day: 'numeric', month: 'short'}});
+      el.textContent = (confirmed.includes(iso) ? 'Next: ' : 'Next, usually: ') +
+        d.toLocaleDateString('en-GB', {{weekday: 'short', day: 'numeric', month: 'short'}});
       el.hidden = false; return;
     }}
   }}
@@ -147,7 +151,7 @@ def page(theme):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{url}">
-<meta name="theme-color" content="#ecebe6">
+<meta name="theme-color" content="#1b1613">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{e(title)}">

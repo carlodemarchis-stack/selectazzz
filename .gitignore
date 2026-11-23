@@ -4,3 +4,4 @@ __pycache__/
 research/ig/
 fonts/
 docs/fonts/
+tools/.cache/

@@ -446,7 +446,10 @@
     "since": "January 2026",
     "rule": "Every Thursday except the first of the month, on average. Four hours of vinyl and digital. About 30 Thursdays so far.",
     "url": "https://www.instagram.com/p/DfB7Xw7AGKq/",
-    "thursdays": 30
+    "thursdays": 30,
+    "confirmed": [
+      "2026-11-26"
+    ]
   },
   "fanzine": {
     "name": "Abe Murakami Substack",
