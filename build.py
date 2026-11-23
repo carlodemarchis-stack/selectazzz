@@ -214,7 +214,7 @@ def page(theme):
 <section id="records" class="sec">
   <h2 class="m"><span>03</span>Records</h2>
   <div class="body wide">
-    <p class="lede m">{rc_count:,} records catalogued on Discogs ({rc_date}), the same list behind the daily record on @carlosturntables. Each one opens its Discogs page.</p>
+    <p class="lede m">A selection of his records: the {rc_count:,} catalogued on Discogs ({rc_date}), the same list behind the daily record on @carlosturntables. Each one opens its Discogs page.</p>
     <div class="rc-tools">
       <input type="search" id="rc-q" placeholder="Search artist, title, label" aria-label="Search the records">
       <select id="rc-sort" aria-label="Sort the records">
