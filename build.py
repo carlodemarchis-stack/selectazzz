@@ -206,7 +206,7 @@ def page(theme):
 <section id="sets" class="sec">
   <h2 class="m"><span>02</span>Sets</h2>
   <div class="body">
-    <p class="lede m">{n_sets} sets, numbered in the order played, {n_res} of them Thursdays at Tono Metzger. Most link to where they were posted; the Tono Thursdays come from his Instagram stories.</p>
+    <p class="lede m">{n_sets} sets, numbered in the order played, {n_res} of them Thursdays at Tono Metzger. Most link to where they were posted; the Tono Thursdays and the Banco Vini nights come from his Instagram stories.</p>
     {residency()}
     {dates_section(gigs)}
   </div>

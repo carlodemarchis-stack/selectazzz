@@ -34,6 +34,8 @@ Everything on the page comes from two of Carlo's own pages (details in `research
 Instagram photos come from Carlo's archive through the Graph API tokens in
 `linkedin_instagram_automation/.env` (`_TURNTABLES`, `_CARLO`), read-only; Carlo picked them from a
 contact sheet on 2026-11-23. Each caption links to its post. The download lives in `research/ig/` (not in git).
+Dates with `src: story` come from Carlo's Instagram story archive (stories tagging @tono.metzger from
+2026, Thursdays only, and @bancovini in 2025); stories are private, so no link.
 Told by Carlo, 2026-11-23 (`src: carlo`, no link): Tono Metzger residency since January 2026, every
 Thursday except the first of the month on average; Casa delle Lampadine end-of-summer party in
 September 2024, 2025 and 2026.
