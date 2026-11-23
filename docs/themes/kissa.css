@@ -1,0 +1,30 @@
+/* kissa: a late-night listening bar. Dark walnut, cream type, an italic serif,
+   amber like a valve amp warming up. */
+:root {
+  --bg: #15110d; --ink: #efe4d0; --mute: #9b8d78; --rule: rgba(239, 228, 208, .13);
+  --hot: #f0a43a; --display: "Fraunces", Georgia, serif; --flyer-bg: #241c15;
+}
+.logo { font-style: italic; font-weight: 500; letter-spacing: 0; font-size: 22px; text-transform: none; }
+.logo::first-letter { text-transform: uppercase; }
+.hero { border-bottom-color: var(--rule); position: relative; }
+.hero h1 { font-style: italic; font-weight: 500; letter-spacing: -.035em; font-size: clamp(60px, 10.5vw, 150px); line-height: .95; }
+.hero h1::first-letter { text-transform: uppercase; }
+.kick { color: var(--hot); }
+.kick::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 10px;
+  background: var(--hot); box-shadow: 0 0 10px 3px rgba(240, 164, 58, .55); vertical-align: 1px;
+  animation: glow 3.2s ease-in-out infinite; }
+@keyframes glow { 50% { box-shadow: 0 0 4px 1px rgba(240, 164, 58, .35); opacity: .75; } }
+.tag { color: #d9ccb6; }
+.stats dd { color: var(--hot); font-family: var(--display); font-style: italic; font-size: 30px; }
+.hp img { filter: grayscale(1) sepia(.45) brightness(.88) contrast(1.08); border-radius: 2px; }
+.sec h2 { font-family: var(--display); font-style: italic; text-transform: none; font-size: 26px; letter-spacing: 0; font-weight: 500; }
+.sec h2 span { font-family: var(--mono); font-style: normal; font-size: 12px; color: var(--hot); vertical-align: 6px; }
+.res { border-color: var(--hot); background: rgba(240, 164, 58, .06); }
+.res .rv { font-style: italic; font-weight: 500; font-size: 32px; }
+.res .nx { color: var(--hot); }
+.year h3 { border-bottom-color: var(--rule); }
+.year h3 .m:first-child { font-family: var(--display); font-style: italic; font-size: 30px; text-transform: none; color: var(--hot); }
+.year li a.r:hover .vn { color: var(--hot); }
+.lk { border-top-color: var(--rule); }
+.lk span:nth-child(2) { font-family: var(--display); font-style: italic; font-size: 22px; }
+@media (prefers-reduced-motion: reduce) { .kick::before { animation: none; } }

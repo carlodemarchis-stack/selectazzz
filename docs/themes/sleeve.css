@@ -1,0 +1,33 @@
+/* sleeve: a 70s spiritual-jazz poster. Orange field, huge condensed capitals,
+   the photo printed as an orange-and-black duotone. */
+:root {
+  --bg: #f2e9d8; --ink: #1a1714; --mute: #7a6f60; --rule: rgba(26, 23, 20, .18);
+  --hot: #e4501e; --display: "Anton", Impact, sans-serif; --flyer-bg: #eadfca;
+}
+.logo { text-transform: uppercase; font-weight: 400; letter-spacing: .02em; font-size: 22px; }
+.hero { position: relative; isolation: isolate; border-bottom: 0; padding: 48px 0 56px; align-items: stretch; }
+.hero::before { content: ""; position: absolute; inset: 0 calc(50% - 50vw); background: var(--hot); z-index: -1; }
+.hero h1 { text-transform: uppercase; font-weight: 400; letter-spacing: -.01em; line-height: .86;
+  font-size: clamp(72px, 13vw, 190px); color: var(--ink); }
+.kick { color: var(--ink); }
+.tag { color: var(--ink); font-size: 20px; }
+.stats dt { color: rgba(26, 23, 20, .7); }
+.stats dd { font-family: var(--display); font-size: 40px; }
+.ht { display: flex; flex-direction: column; justify-content: flex-end; }
+.hp { background: var(--hot); align-self: end; }
+.hp img { filter: grayscale(1) contrast(1.35) brightness(1.05); mix-blend-mode: multiply; }
+.hp figcaption { color: var(--ink); }
+.hp figcaption a:hover { color: #fff; }
+.sec { border-bottom: 2px solid var(--ink); }
+.sec h2 { font-family: var(--display); text-transform: uppercase; font-size: 40px; letter-spacing: 0; line-height: 1; font-weight: 400; }
+.sec h2 span { display: block; font-family: var(--mono); font-size: 12px; color: var(--hot); margin: 0 0 6px; }
+.res { border: 0; background: var(--ink); color: var(--bg); }
+.res .m { color: rgba(242, 233, 216, .6); }
+.res .rv { font-weight: 400; text-transform: uppercase; font-size: 38px; letter-spacing: 0; }
+.res .nx { color: var(--hot); }
+.year h3 { border-bottom: 3px solid var(--ink); }
+.year h3 .m:first-child { font-family: var(--display); font-size: 44px; line-height: 1; letter-spacing: 0; }
+.year .no { color: var(--hot); }
+.lk { border-top: 3px solid var(--ink); }
+.lk span:nth-child(2) { font-family: var(--display); text-transform: uppercase; font-size: 26px; }
+@media (max-width: 860px) { .hero { align-items: start; } }

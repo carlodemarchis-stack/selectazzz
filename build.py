@@ -4,10 +4,26 @@
 One page laid out like a record sleeve: hero, about, the dates as a numbered
 tracklist (residency first), photos, links.
 """
-import json, pathlib, shutil
+import json, pathlib, shutil, sys
 from html import escape as e
 
 ROOT = pathlib.Path(__file__).resolve().parent
+# Each theme = site.css (shared layout) + themes/<name>.css (type, colour, hero treatment).
+THEMES = {
+    "paper": "IBM+Plex+Mono:wght@400;500",
+    "kissa": "Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,700&family=IBM+Plex+Mono:wght@400;500",
+    "sleeve": "Anton&family=IBM+Plex+Mono:wght@400;500",
+    "label": "Space+Mono:ital,wght@0,400;0,700;1,400",
+}
+DISC = """<svg class="disc" viewBox="0 0 200 200" aria-hidden="true">
+  <circle cx="100" cy="100" r="99" fill="#0b0b0b"/>
+  <g fill="none" stroke="#262626" stroke-width=".6">{grooves}</g>
+  <circle cx="100" cy="100" r="38" class="lbl"/>
+  <defs><path id="ring" d="M100,100 m-29,0 a29,29 0 1,1 58,0 a29,29 0 1,1 -58,0"/></defs>
+  <text class="lt"><textPath href="#ring">SELECTAZZZ · CARLO DE MARCHIS · TORINO · SIDE A ·</textPath></text>
+  <text x="100" y="122" class="lc" text-anchor="middle">33⅓</text>
+  <circle cx="100" cy="100" r="2.6" fill="#0b0b0b"/>
+</svg>""".replace("{grooves}", "".join(f'<circle cx="100" cy="100" r="{r}"/>' for r in range(44, 98, 3)))
 DOCS = ROOT / "docs"
 SITE = json.loads((ROOT / "site.json").read_text())
 DATA = json.loads((ROOT / "data.json").read_text())
@@ -96,7 +112,7 @@ def residency():
 </script>"""
 
 
-def page():
+def page(theme):
     a, gigs = DATA["about"], DATA["gigs"]
     n_venues = len({g["venue"] for g in gigs if not g["venue"].lower().startswith("private")})
     first = min(g["date"][:4] for g in gigs)
@@ -132,11 +148,12 @@ def page():
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={THEMES[theme]}&display=swap">
 <link rel="stylesheet" href="site.css?v={SITE['css_version']}">
+<link rel="stylesheet" href="themes/{theme}.css?v={SITE['css_version']}">
 {umami()}
 </head>
-<body>
+<body class="t-{theme}">
 <header class="bar">
   <a class="logo" href="./">selectazzz</a>
   <nav class="m"><a href="#about">About</a><a href="#sets">Sets</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
@@ -154,6 +171,8 @@ def page():
       <div><dt>Since</dt><dd>{first}</dd></div>
     </dl>
   </div>
+  {DISC}
+  <p class="stamp" aria-hidden="true">Mostly vinyl</p>
   <figure class="hp"><img src="img/{hero['file']}-1200.jpg" srcset="img/{hero['file']}-600.jpg 600w, img/{hero['file']}-1200.jpg 1200w" sizes="(max-width: 860px) 100vw, 42vw" alt="{e(hero['alt'])}"><figcaption class="m">{cap(hero)}</figcaption></figure>
 </section>
 
@@ -193,15 +212,24 @@ def page():
 """
 
 
-def main():
-    DOCS.mkdir(exist_ok=True)
-    (DOCS / "index.html").write_text(page())
+def build(out, theme):
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "index.html").write_text(page(theme))
     for f in ("site.css", "favicon.svg", "og.jpg"):
-        shutil.copy(ROOT / f, DOCS / f)
-    shutil.copytree(ROOT / "img", DOCS / "img", dirs_exist_ok=True)
-    (DOCS / "CNAME").write_text(SITE["host"] + "\n")
-    print(f"built docs/index.html: {len(DATA['gigs'])} sets, {len(DATA['photos'])} photos")
+        shutil.copy(ROOT / f, out / f)
+    shutil.copytree(ROOT / "themes", out / "themes", dirs_exist_ok=True)
+    shutil.copytree(ROOT / "img", out / "img", dirs_exist_ok=True)
 
+
+def main():
+    if len(sys.argv) > 2 and sys.argv[1] == "--preview":  # every theme into <dir>/<theme>/
+        for t in THEMES:
+            build(pathlib.Path(sys.argv[2]) / t, t)
+        print("preview:", ", ".join(THEMES))
+        return
+    build(DOCS, SITE["theme"])
+    (DOCS / "CNAME").write_text(SITE["host"] + "\n")
+    print(f"built docs/index.html ({SITE['theme']}): {len(DATA['gigs'])} sets, {len(DATA['photos'])} photos")
 
 if __name__ == "__main__":
     main()

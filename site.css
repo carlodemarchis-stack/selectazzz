@@ -1,27 +1,31 @@
-/* Selectazzz. Understated, like the back of a record sleeve: paper, black ink,
-   Helvetica for the name, a typewriter-ish mono for credits and numbers. */
+/* Selectazzz shared layout. Colours and type come from variables that each
+   themes/<name>.css sets; the theme files also restyle the hero. */
 :root {
-  --paper: #ecebe6;
+  --bg: #ecebe6;
   --ink: #141414;
   --mute: #74716a;
   --rule: rgba(20, 20, 20, .16);
   --hot: #b0412a;
+  --text: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --flyer-bg: #f3ecdc;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0; background: var(--paper); color: var(--ink);
-  font: 17px/1.55 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 17px/1.55 var(--text);
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-.m { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: .04em;
+.m { font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
   text-transform: uppercase; font-weight: 400; }
 main, .bar, footer { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 
 /* bar */
 .bar { display: flex; justify-content: space-between; align-items: baseline; padding-top: 24px; padding-bottom: 24px; }
-.logo { font-weight: 700; font-size: 19px; letter-spacing: -.03em; text-decoration: none; }
+.logo { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -.03em; text-decoration: none; }
 .bar nav a { text-decoration: none; margin-left: 24px; color: var(--mute); }
 .bar nav a:hover { color: var(--ink); }
 
@@ -29,7 +33,7 @@ main, .bar, footer { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 .hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: end;
   padding: 56px 0 64px; border-bottom: 1px solid var(--ink); }
 .kick { color: var(--mute); margin: 0 0 18px; }
-.hero h1 { margin: 0; font-weight: 700; font-size: clamp(52px, 9.4vw, 122px); line-height: .9; letter-spacing: -.055em; }
+.hero h1 { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(52px, 9.4vw, 122px); line-height: .9; letter-spacing: -.055em; }
 .tag { max-width: 31em; font-size: 19px; line-height: 1.5; margin: 28px 0 0; }
 .stats { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 0 40px; margin: 40px 0 0; }
 .stats dt { color: var(--mute); }
@@ -39,6 +43,9 @@ main, .bar, footer { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 .hp figcaption, .grid figcaption { color: var(--mute); margin-top: 10px; }
 figcaption a { text-decoration: none; }
 figcaption a:hover { color: var(--ink); }
+
+/* hero extras, off unless a theme turns them on */
+.disc, .stamp { display: none; }
 
 /* sections: label column + body, like sleeve credits */
 .sec { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 56px 0; border-bottom: 1px solid var(--rule); }
@@ -54,7 +61,7 @@ figcaption a:hover { color: var(--ink); }
 /* sets */
 .res { border: 1px solid var(--ink); padding: 20px 22px; margin: 0 0 44px; max-width: 520px; }
 .res .m { color: var(--mute); margin: 0; }
-.res .rv { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin: 6px 0 4px; }
+.res .rv { font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin: 6px 0 4px; }
 .res .rv a { text-decoration: none; }
 .res .rr { margin: 0 0 12px; font-size: 15px; }
 .res .nx { color: var(--ink); }
@@ -76,7 +83,7 @@ figcaption a:hover { color: var(--ink); }
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: none; }
 .grid figure { margin: 0; }
 .grid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
-.grid figure.contain img { object-fit: contain; background: #f3ecdc; }
+.grid figure.contain img { object-fit: contain; background: var(--flyer-bg); }
 
 /* links */
 .lk { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
