@@ -17,9 +17,9 @@ body { font-size: 15px; }
   animation: spin 33.333s linear infinite; filter: drop-shadow(0 8px 24px rgba(0, 0, 0, .6)); }
 .disc .lbl { fill: #f4f1ea; }
 .disc .lt { font: 700 6.4px "Space Mono", monospace; letter-spacing: .6px; fill: #111; }
-.disc .lc { font: 700 11px "Space Mono", monospace; fill: var(--hot); }
+.disc .lc { font: 700 9px "Space Mono", monospace; fill: var(--hot); }
 @keyframes spin { to { transform: rotate(360deg); } }
-.stamp { display: block; position: absolute; left: 0; top: 18px; margin: 0; z-index: 3; transform: rotate(-7deg);
+.stamp { display: block; position: absolute; left: calc(52% - 34px); bottom: 118px; margin: 0; z-index: 3; transform: rotate(-7deg);
   border: 3px solid var(--hot); color: var(--hot); padding: 6px 14px 5px; font: 700 15px var(--mono);
   text-transform: uppercase; letter-spacing: .14em; opacity: .9; }
 .sec h2 span { color: var(--hot); }
@@ -33,5 +33,5 @@ body { font-size: 15px; }
 .grid img { filter: grayscale(1) contrast(1.15); transition: filter .3s; }
 .grid figure:hover img { filter: none; }
 .lk a { font-size: 16px; }
-@media (max-width: 860px) { .disc { right: 8px; top: auto; bottom: 46px; width: 150px; } .stamp { top: 0; } }
+@media (max-width: 860px) { .disc { right: 8px; top: auto; bottom: 46px; width: 150px; } .stamp { left: auto; right: 24px; bottom: auto; top: 46%; } }
 @media (prefers-reduced-motion: reduce) { .disc { animation: none; } }

@@ -14,6 +14,9 @@ THEMES = {
     "kissa": "Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,700&family=IBM+Plex+Mono:wght@400;500",
     "sleeve": "Anton&family=IBM+Plex+Mono:wght@400;500",
     "label": "Space+Mono:ital,wght@0,400;0,700;1,400",
+    # tono: after the Tono Metzger flyers. Their display face is UT Modino Display (Uppercap Type,
+    # commercial): the theme uses fonts/display.otf when a licensed copy is there, Righteous otherwise.
+    "tono": "Righteous&family=IBM+Plex+Mono:wght@400;500",
 }
 DISC = """<svg class="disc" viewBox="0 0 200 200" aria-hidden="true">
   <circle cx="100" cy="100" r="99" fill="#0b0b0b"/>
@@ -116,7 +119,15 @@ def page(theme):
     a, gigs = DATA["about"], DATA["gigs"]
     n_venues = len({g["venue"] for g in gigs if not g["venue"].lower().startswith("private")})
     first = min(g["date"][:4] for g in gigs)
+    # residency.thursdays counts all regular Tono Thursdays (Carlo's figure); the ones with a
+    # known date are already in gigs (flagged "residency"), so only the rest are added.
+    n_res = max(DATA.get("residency", {}).get("thursdays", 0) - sum(1 for g in gigs if g.get("residency")), 0)
+    n_sets = len(gigs) + n_res
     hero = DATA["photos"][0]
+    fz = DATA.get("fanzine")
+    fanzine = "" if not fz else "".join(
+        f'<li><a class="r" href="{e(i["url"])}" target="_blank" rel="noopener"><span class="dt m">{i["date"][8:]}.{i["date"][5:7]}.{i["date"][2:4]}</span>'
+        f'<span class="vn">{e(i["title"])}</span></a></li>' for i in fz["issues"])
     photos = "".join(f"""<figure{' class="contain"' if p.get('fit') == 'contain' else ''}>
   <img src="img/{p['file']}-1200.jpg" srcset="img/{p['file']}-600.jpg 600w, img/{p['file']}-1200.jpg 1200w" sizes="(max-width: 700px) 100vw, 33vw" alt="{e(p['alt'])}" loading="lazy">
   <figcaption class="m">{cap(p)}</figcaption>
@@ -126,7 +137,7 @@ def page(theme):
     paras = "".join(f"<p>{e(p)}</p>" for p in a["paragraphs"])
     stores = "".join(f"<li>{e(s)}</li>" for s in a["stores"])
     title = "Selectazzz · Carlo De Marchis"
-    desc = f"Selectazzz: Carlo De Marchis's selector sets, mostly vinyl, now hybrid. {len(gigs)} sets since {first}."
+    desc = f"Selectazzz: Carlo De Marchis's selector sets, mostly vinyl, now hybrid. {n_sets} sets since {first}."
     url = f"https://{SITE['host']}/"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -163,9 +174,10 @@ def page(theme):
   <div class="ht">
     <p class="m kick">Carlo De Marchis · Selector · Torino</p>
     <h1>selectazzz</h1>
+    <p class="con">with Carlo De Marchis</p>
     <p class="tag">{e(a['tagline'])}</p>
     <dl class="stats m">
-      <div><dt>Sets</dt><dd>{len(gigs)}</dd></div>
+      <div><dt>Sets</dt><dd>{n_sets}</dd></div>
       <div><dt>Venues</dt><dd>{n_venues}</dd></div>
       <div><dt>Records</dt><dd>2,000+</dd></div>
       <div><dt>Since</dt><dd>{first}</dd></div>
@@ -187,7 +199,7 @@ def page(theme):
 <section id="sets" class="sec">
   <h2 class="m"><span>02</span>Sets</h2>
   <div class="body">
-    <p class="lede m">{len(gigs)} dated sets, numbered in the order played, plus the Thursday residency. Most link to where they were posted.</p>
+    <p class="lede m">{n_sets} sets: {len(gigs)} dated ones, numbered in the order played, plus about {n_res} more Thursdays of the residency. Most link to where they were posted.</p>
     {residency()}
     {dates_section(gigs)}
   </div>
@@ -198,8 +210,16 @@ def page(theme):
   <div class="body grid">{photos}</div>
 </section>
 
+<section id="fanzine" class="sec">
+  <h2 class="m"><span>04</span>Fanzine</h2>
+  <div class="body">
+    <p>{e(fz['intro']) if fz else ''} <a href="{e(fz['url']) if fz else ''}" target="_blank" rel="noopener">{e(fz['name']) if fz else ''} ↗</a></p>
+    <ol class="fz year">{fanzine}</ol>
+  </div>
+</section>
+
 <section id="links" class="sec">
-  <h2 class="m"><span>04</span>Links</h2>
+  <h2 class="m"><span>05</span>Links</h2>
   <div class="body"><ul class="lk">{links}</ul></div>
 </section>
 </main>

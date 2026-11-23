@@ -45,7 +45,7 @@ figcaption a { text-decoration: none; }
 figcaption a:hover { color: var(--ink); }
 
 /* hero extras, off unless a theme turns them on */
-.disc, .stamp { display: none; }
+.disc, .stamp, .con { display: none; }
 
 /* sections: label column + body, like sleeve credits */
 .sec { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 56px 0; border-bottom: 1px solid var(--rule); }
@@ -78,6 +78,9 @@ figcaption a:hover { color: var(--ink); }
 .year .nt { display: block; font-size: 14px; color: var(--mute); }
 .year .pl { font-size: 14px; color: var(--mute); text-align: right; }
 .year li a.r:hover .vn { color: var(--hot); }
+
+.fz { list-style: none; margin: 18px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.fz li .r { grid-template-columns: 90px 1fr; }
 
 /* photos */
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: none; }

@@ -1,0 +1,55 @@
+/* tono: after the Selectazzz flyers for Tono Metzger, Torino. A dark room, the name in a
+   rounded 70s display face in cream, "with Carlo De Marchis" in bold grotesk, the genres in
+   yellow-cream capitals with a soft shadow, captions set on the photos. */
+@font-face { font-family: "Selectazzz Display"; font-display: swap;
+  src: url("../fonts/display.woff2") format("woff2"), url("../fonts/display.otf") format("opentype"); }
+:root {
+  --bg: #1b1613; --ink: #f3e6c4; --mute: #a8977a; --rule: rgba(243, 230, 196, .14);
+  --hot: #efe2a2; --display: "Selectazzz Display", "Righteous", sans-serif; --flyer-bg: #29211c;
+  --caps: 0 2px 10px rgba(0, 0, 0, .55);
+}
+.logo { font-weight: 400; font-size: 24px; letter-spacing: 0; }
+.bar { position: relative; z-index: 2; }
+.bar nav a { color: var(--ink); opacity: .75; }
+
+/* hero: the photo fills the band, the type sits on it like on the flyer */
+.hero { position: relative; isolation: isolate; display: block; text-align: center; border: 0;
+  padding: 18vh 0 13vh; margin-top: -100px; min-height: min(94vh, 900px); }
+.hp { position: absolute; inset: 0 calc(50% - 50vw); z-index: -1; margin: 0; }
+.hp img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 30%;
+  filter: grayscale(.2) brightness(.42) contrast(1.05) sepia(.25); }
+.hp figcaption { position: absolute; right: 32px; bottom: 18px; color: rgba(243, 230, 196, .7); margin: 0; }
+.ht { max-width: 980px; margin: 0 auto; }
+.kick { display: none; }
+.hero h1 { font-weight: 400; font-size: clamp(76px, 15vw, 210px); letter-spacing: -.02em; line-height: .9;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, .45); }
+.con { display: block; margin: 14px 0 0; font: 700 clamp(26px, 3.6vw, 50px)/1.1 var(--text); letter-spacing: -.02em;
+  color: #fff8ea; text-shadow: var(--caps); }
+.tag { margin: 34px auto 0; max-width: 30em; font: 700 clamp(15px, 1.7vw, 21px)/1.35 var(--text);
+  text-transform: uppercase; letter-spacing: .005em; color: var(--hot); text-shadow: var(--caps); }
+.stats { justify-content: center; margin-top: 44px; }
+.stats dt { color: rgba(243, 230, 196, .7); }
+.stats dd { font-family: var(--display); font-size: 34px; color: #fff8ea; }
+
+/* sections */
+.sec h2 { font-family: var(--display); text-transform: none; font-size: 34px; letter-spacing: 0; font-weight: 400; line-height: 1; }
+.sec h2 span { font-family: var(--mono); font-size: 12px; color: var(--hot); vertical-align: 10px; }
+.res { border: 0; background: #2a221c; padding: 24px 26px; }
+.res .rv { font-family: var(--display); font-weight: 400; font-size: 34px; }
+.res .rr { text-transform: uppercase; font-weight: 700; color: var(--hot); font-size: 14px; }
+.res .nx { color: #fff8ea; }
+.year h3 { border-bottom-color: var(--rule); }
+.year h3 .m:first-child { font-family: var(--display); font-size: 34px; letter-spacing: 0; color: var(--hot); }
+.year li a.r:hover .vn { color: var(--hot); }
+
+/* photos: caption on the image */
+.grid figure { position: relative; overflow: hidden; }
+.grid img { filter: brightness(.92); }
+.grid figcaption { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 48px 16px 14px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .78)); font: 400 20px/1.15 var(--display);
+  text-transform: lowercase; letter-spacing: 0; color: var(--ink); }
+.grid figcaption a:hover { color: var(--hot); }
+.lk { border-top-color: var(--rule); }
+.lk span:nth-child(2) { font-family: var(--display); font-size: 24px; }
+@media (max-width: 860px) { .hero { min-height: 0; padding: 120px 0 90px; } .hp figcaption { right: 18px; } }
+@media (max-width: 560px) { .hero h1 { font-size: 19vw; } .stats { justify-items: center; } }

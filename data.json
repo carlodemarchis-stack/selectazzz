@@ -267,6 +267,14 @@
       "src": "carlo"
     },
     {
+      "date": "2026-02-26",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "ig:DVG7HerCjLU",
+      "residency": true
+    },
+    {
       "date": "2026-03-12",
       "venue": "Tono Metzger",
       "place": "Torino",
@@ -274,11 +282,27 @@
       "src": "ig:DVim_0HjpgQ"
     },
     {
-      "date": "2026-09",
-      "venue": "Casa delle Lampadine",
+      "date": "2026-03-19",
+      "venue": "Tono Metzger",
       "place": "Torino",
+      "note": "Thursday residency",
+      "src": "ig:DVG7HerCjLU",
+      "residency": true
+    },
+    {
+      "date": "2026-03-26",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "ig:DVG7HerCjLU",
+      "residency": true
+    },
+    {
+      "date": "2026-09-17",
+      "venue": "Casa delle Lampadine",
+      "place": "via Gioberti 38, Torino",
       "note": "End-of-summer party",
-      "src": "carlo"
+      "src": "ig:Dc-6Q0usyxF"
     },
     {
       "date": "2026-10-29",
@@ -368,6 +392,20 @@
       "src": "ig:DH9qC5yNX47"
     },
     {
+      "file": "tono-flyer",
+      "alt": "Tono flyer: listening session, Carlo De Marchis, Thursday 26 February, 12, 19, 26 March, 19:00, via Catania 45b",
+      "caption": "Tono Metzger flyer · Feb 2026",
+      "src": "ig:DVG7HerCjLU",
+      "fit": "contain"
+    },
+    {
+      "file": "tono-decks",
+      "alt": "Carlo De Marchis with headphones at the decks at Tono, red bar lights behind",
+      "caption": "At Tono Metzger · Feb 2026",
+      "src": "ig:DVG7HerCjLU",
+      "fit": "contain"
+    },
+    {
       "file": "tono-art-week",
       "alt": "Flyer: la settimana dell'arte contemporanea da Tono Metzger, carlodemarchis photography beyond photography, Thursday 29 October from 19",
       "caption": "Tono Metzger, Torino art week · Oct 2026",
@@ -406,7 +444,35 @@
     "venue": "Tono Metzger",
     "place": "Torino",
     "since": "January 2026",
-    "rule": "Every Thursday except the first of the month, on average. Four hours of vinyl and digital.",
-    "url": "https://www.instagram.com/p/DfB7Xw7AGKq/"
+    "rule": "Every Thursday except the first of the month, on average. Four hours of vinyl and digital. About 30 Thursdays so far.",
+    "url": "https://www.instagram.com/p/DfB7Xw7AGKq/",
+    "thursdays": 30
+  },
+  "fanzine": {
+    "name": "Abe Murakami Substack",
+    "url": "https://abemurakami.substack.com/",
+    "intro": "A music fanzine he writes on Substack as Abe Murakami.",
+    "issues": [
+      {
+        "date": "2026-02-19",
+        "title": "No.1: My Obsession for “Summer in the City”",
+        "url": "https://abemurakami.substack.com/p/my-obsession-for-summer-in-the-city"
+      },
+      {
+        "date": "2026-02-25",
+        "title": "No.2: The Lot Radio, Brooklyn New York",
+        "url": "https://abemurakami.substack.com/p/no2-the-lot-radio-brooklyn-new-york"
+      },
+      {
+        "date": "2026-03-12",
+        "title": "No.3: The Rough Trade Story: From Record Shop to Indie Empire",
+        "url": "https://abemurakami.substack.com/p/the-rough-trade-story-from-record"
+      },
+      {
+        "date": "2026-03-19",
+        "title": "Ep. 4: Concerts à Emporter, La Blogothèque",
+        "url": "https://abemurakami.substack.com/p/ep-4-concerts-a-emporter-la-blogotheque"
+      }
+    ]
   }
 }
