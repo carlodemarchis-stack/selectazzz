@@ -66,10 +66,36 @@ def dates_section(gigs):
 
 def venues(gigs):
     """Most-played venues (2+ sets), as a short credits-style list."""
-    c = Counter(g["venue"] for g in gigs if not g["venue"].lower().startswith("private"))
+    res = DATA.get("residency", {}).get("venue")  # shown in its own block, not ranked by dated sets
+    c = Counter(g["venue"] for g in gigs if not g["venue"].lower().startswith("private") and g["venue"] != res)
     rows = "".join(f'<li><span>{e(v)}</span><i></i><span class="m">{n:02d}</span></li>'
                    for v, n in c.most_common() if n > 1)
     return f'<ul class="venues">{rows}</ul>'
+
+
+def residency():
+    r = DATA.get("residency")
+    if not r:
+        return ""
+    return f"""<div class="res">
+  <p class="m">Residency · since {e(r['since'])}</p>
+  <p class="rv"><a href="{e(r['url'])}" target="_blank" rel="noopener">{e(r['venue'])}</a>, {e(r['place'])}</p>
+  <p class="rr">{e(r['rule'])}</p>
+  <p class="m nx" id="next" hidden></p>
+</div>
+<script>
+// Next Thursday that is not the first Thursday of its month (the residency's usual pattern).
+(function () {{
+  const d = new Date(); d.setHours(0, 0, 0, 0);
+  for (let i = 0; i < 21; i++, d.setDate(d.getDate() + 1)) {{
+    if (d.getDay() === 4 && d.getDate() > 7) {{
+      const el = document.getElementById('next');
+      el.textContent = 'Next, usually: ' + d.toLocaleDateString('en-GB', {{weekday: 'short', day: 'numeric', month: 'short'}});
+      el.hidden = false; return;
+    }}
+  }}
+}})();
+</script>"""
 
 
 def page():
@@ -144,7 +170,8 @@ def page():
 <section id="sets" class="sec">
   <h2 class="m"><span>02</span>Sets</h2>
   <div class="body">
-    <p class="lede m">{len(gigs)} sets, numbered in the order played. Each one links to where it was posted.</p>
+    <p class="lede m">{len(gigs)} dated sets, numbered in the order played, plus the Thursday residency. Each one links to where it was posted.</p>
+    {residency()}
     <div class="most"><p class="m">Most played</p>{venues(gigs)}</div>
     {dates_section(gigs)}
   </div>

@@ -50,6 +50,12 @@ main, .bar, footer { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 .stores li { padding: 6px 0; border-top: 1px solid var(--rule); break-inside: avoid; font-size: 15px; }
 
 /* sets */
+.res { border: 1px solid var(--ink); padding: 20px 22px; margin: 0 0 44px; max-width: 520px; }
+.res .m { color: var(--mute); margin: 0; }
+.res .rv { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin: 6px 0 4px; }
+.res .rv a { text-decoration: none; }
+.res .rr { margin: 0 0 12px; font-size: 15px; }
+.res .nx { color: var(--ink); }
 .body > p.lede { color: var(--mute); margin: 0 0 32px; font-size: 12px; }
 .most { margin-bottom: 52px; max-width: 520px; }
 .most > .m { color: var(--mute); margin: 0 0 8px; }

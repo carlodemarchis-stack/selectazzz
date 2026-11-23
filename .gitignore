@@ -1,3 +1,4 @@
 research/*.jpg
 .DS_Store
 __pycache__/
+research/ig/
