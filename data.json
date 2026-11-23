@@ -267,6 +267,22 @@
       "src": "carlo"
     },
     {
+      "date": "2026-02-05",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-02-19",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
       "date": "2026-02-26",
       "venue": "Tono Metzger",
       "place": "Torino",
@@ -279,7 +295,8 @@
       "venue": "Tono Metzger",
       "place": "Torino",
       "note": "Ddoce Casa release party (Abe Murakami, NEOM Records)",
-      "src": "ig:DVim_0HjpgQ"
+      "src": "ig:DVim_0HjpgQ",
+      "residency": true
     },
     {
       "date": "2026-03-19",
@@ -298,6 +315,150 @@
       "residency": true
     },
     {
+      "date": "2026-04-02",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-04-09",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-04-16",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-04-23",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-04-30",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-05-07",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-05-14",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-05-21",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-05-28",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-06-11",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-06-25",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-07-02",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-07-16",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-07-23",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-07-30",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-08-13",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-08-27",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-09-03",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
       "date": "2026-09-17",
       "venue": "Casa delle Lampadine",
       "place": "via Gioberti 38, Torino",
@@ -305,11 +466,44 @@
       "src": "ig:Dc-6Q0usyxF"
     },
     {
+      "date": "2026-09-24",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-10-08",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-10-15",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
+      "date": "2026-10-22",
+      "venue": "Tono Metzger",
+      "place": "Torino",
+      "note": "Thursday residency",
+      "src": "story",
+      "residency": true
+    },
+    {
       "date": "2026-10-29",
       "venue": "Tono Metzger",
       "place": "Torino",
       "note": "Torino art week: his photographs on the walls, Selectazzz on the decks",
-      "src": "ig:DfB7Xw7AGKq"
+      "src": "ig:DfB7Xw7AGKq",
+      "residency": true
     }
   ],
   "photos": [
@@ -406,6 +600,11 @@
       "fit": "contain"
     },
     {
+      "file": "lampadine-2026",
+      "alt": "Carlo De Marchis behind a laptop and controller under a globe chandelier, guests behind him",
+      "caption": "Casa delle Lampadine · Sep 2026 · photo @properz"
+    },
+    {
       "file": "tono-art-week",
       "alt": "Flyer: la settimana dell'arte contemporanea da Tono Metzger, carlodemarchis photography beyond photography, Thursday 29 October from 19",
       "caption": "Tono Metzger, Torino art week · Oct 2026",
@@ -439,9 +638,8 @@
     "venue": "Tono Metzger",
     "place": "Torino",
     "since": "January 2026",
-    "rule": "Every Thursday except the first of the month, on average. Four hours of vinyl and digital. About 30 Thursdays so far.",
+    "rule": "Every Thursday except the first of the month, on average. Four hours of vinyl and digital.",
     "url": "https://www.instagram.com/p/DfB7Xw7AGKq/",
-    "thursdays": 30,
     "confirmed": [
       "2026-11-26"
     ]

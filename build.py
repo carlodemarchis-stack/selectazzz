@@ -43,7 +43,7 @@ def src_link(s):
         return "https://cdm.medium.com/carlos-turntable-playlists-2826ab98480c"
     if s.startswith("ig:"):
         return f"https://www.instagram.com/p/{s[3:]}/"
-    return ""  # "carlo": told by Carlo directly, nothing to link
+    return ""  # "carlo": told by Carlo; "story": his IG story archive (private) -- nothing to link
 
 
 def cap(p):
@@ -94,10 +94,11 @@ def residency():
     r = DATA.get("residency")
     if not r:
         return ""
+    n = sum(1 for g in DATA["gigs"] if g.get("residency"))
     return f"""<div class="res">
   <p class="m">Residency · since {e(r['since'])}</p>
   <p class="rv"><a href="{e(r['url'])}" target="_blank" rel="noopener">{e(r['venue'])}</a>, {e(r['place'])}</p>
-  <p class="rr">{e(r['rule'])}</p>
+  <p class="rr">{e(r['rule'])} {n} Thursdays so far.</p>
   <p class="m nx" id="next" hidden></p>
 </div>
 <script>
@@ -123,10 +124,10 @@ def page(theme):
     a, gigs = DATA["about"], DATA["gigs"]
     n_venues = len({g["venue"] for g in gigs if not g["venue"].lower().startswith("private")})
     first = min(g["date"][:4] for g in gigs)
-    # residency.thursdays counts all regular Tono Thursdays (Carlo's figure); the ones with a
-    # known date are already in gigs (flagged "residency"), so only the rest are added.
-    n_res = max(DATA.get("residency", {}).get("thursdays", 0) - sum(1 for g in gigs if g.get("residency")), 0)
-    n_sets = len(gigs) + n_res
+    # Tono Thursdays are dated sets flagged "residency" (from Carlo's IG story archive: he posts a
+    # story tagging @tono.metzger every time he plays there).
+    n_res = sum(1 for g in gigs if g.get("residency"))
+    n_sets = len(gigs)
     hero = DATA["photos"][0]
     rc = json.loads((ROOT / "records.json").read_text())
     rc_count, rc_date = rc["count"], rc["fetched"]
@@ -205,7 +206,7 @@ def page(theme):
 <section id="sets" class="sec">
   <h2 class="m"><span>02</span>Sets</h2>
   <div class="body">
-    <p class="lede m">{n_sets} sets: {len(gigs)} dated ones, numbered in the order played, plus about {n_res} more Thursdays of the residency. Most link to where they were posted.</p>
+    <p class="lede m">{n_sets} sets, numbered in the order played, {n_res} of them Thursdays at Tono Metzger. Most link to where they were posted; the Tono Thursdays come from his Instagram stories.</p>
     {residency()}
     {dates_section(gigs)}
   </div>
