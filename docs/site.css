@@ -59,11 +59,6 @@ figcaption a:hover { color: var(--ink); }
 .res .rr { margin: 0 0 12px; font-size: 15px; }
 .res .nx { color: var(--ink); }
 .body > p.lede { color: var(--mute); margin: 0 0 32px; font-size: 12px; }
-.most { margin-bottom: 52px; max-width: 520px; }
-.most > .m { color: var(--mute); margin: 0 0 8px; }
-.venues { list-style: none; margin: 0; padding: 0; }
-.venues li { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; font-size: 15px; }
-.venues i { flex: 1; border-bottom: 1px dotted var(--mute); transform: translateY(-4px); }
 .year { margin-bottom: 44px; }
 .year h3 { display: flex; justify-content: space-between; margin: 0; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
 .year h3 .m:first-child { font-size: 13px; font-weight: 500; }

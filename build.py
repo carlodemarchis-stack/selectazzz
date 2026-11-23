@@ -2,10 +2,9 @@
 """Build the Selectazzz site into docs/ from data.json + site.json. Stdlib only.
 
 One page laid out like a record sleeve: hero, about, the dates as a numbered
-tracklist (most-played venues first), photos, links.
+tracklist (residency first), photos, links.
 """
 import json, pathlib, shutil
-from collections import Counter
 from html import escape as e
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -70,15 +69,6 @@ def dates_section(gigs):
   <ol>{''.join(rows)}</ol>
 </section>""")
     return "".join(blocks)
-
-
-def venues(gigs):
-    """Most-played venues (2+ sets), as a short credits-style list."""
-    res = DATA.get("residency", {}).get("venue")  # shown in its own block, not ranked by dated sets
-    c = Counter(g["venue"] for g in gigs if not g["venue"].lower().startswith("private") and g["venue"] != res)
-    rows = "".join(f'<li><span>{e(v)}</span><i></i><span class="m">{n:02d}</span></li>'
-                   for v, n in c.most_common() if n > 1)
-    return f'<ul class="venues">{rows}</ul>'
 
 
 def residency():
@@ -178,9 +168,8 @@ def page():
 <section id="sets" class="sec">
   <h2 class="m"><span>02</span>Sets</h2>
   <div class="body">
-    <p class="lede m">{len(gigs)} dated sets, numbered in the order played, plus the Thursday residency. Each one links to where it was posted.</p>
+    <p class="lede m">{len(gigs)} dated sets, numbered in the order played, plus the Thursday residency. Most link to where they were posted.</p>
     {residency()}
-    <div class="most"><p class="m">Most played</p>{venues(gigs)}</div>
     {dates_section(gigs)}
   </div>
 </section>
