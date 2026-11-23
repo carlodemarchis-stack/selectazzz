@@ -54,3 +54,5 @@
 .lk span:nth-child(2) { font-family: var(--display); font-size: 24px; }
 @media (max-width: 860px) { .hero { min-height: 0; padding: 120px 0 90px; } .hp figcaption { right: 18px; } }
 @media (max-width: 560px) { .hero h1 { font-size: 19vw; } .stats { justify-items: center; } }
+.rc-grid .ra { font-family: var(--display); font-weight: 400; font-size: 16px; text-transform: lowercase; }
+.rc-chips button.on { color: var(--hot); border-color: var(--hot); }

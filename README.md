@@ -14,6 +14,15 @@ python3 build.py      # docs/index.html, copies site.css, favicon.svg, og.jpg, i
 
 Commit and push; Pages serves `docs/`. On CSS changes bump `css_version` in `site.json`.
 
+## Records (Discogs)
+
+`python3 tools/fetch_discogs.py` writes `records.json`: the whole public Discogs collection of user
+carlodemarchis (1,279 on 2026-11-23), the same endpoint `linkedin_instagram_automation/discogs_stories.py`
+uses for the daily @carlosturntables record. The page loads it in the browser and draws 60 covers at a
+time (search, genre chips, sort). Covers are Discogs thumbnails linked to each release page.
+Note: Discogs holds 1,279 records while Medium says 2,000+; the stat keeps 2,000+, the section says
+"catalogued on Discogs".
+
 ## Sources
 
 Everything on the page comes from two of Carlo's own pages (details in `research/SOURCES.md`):

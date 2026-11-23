@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Righteous&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="site.css?v=9">
-<link rel="stylesheet" href="themes/tono.css?v=9">
+<link rel="stylesheet" href="site.css?v=10">
+<link rel="stylesheet" href="themes/tono.css?v=10">
 <!-- Umami --><script>try{/[?&#]noumami\b/.test(location.href)&&localStorage.setItem('umami.disabled','1')}catch(e){}</script>
 <script defer src="https://m.aguywithascarf.com/k.js" data-website-id="1dbe2543-d3a7-4308-ac7a-8496a77306fd" data-domains="selectazzz.carlodemarchis.it"></script>
 <!-- /Umami -->
@@ -28,7 +28,7 @@
 <body class="t-tono">
 <header class="bar">
   <a class="logo" href="./">selectazzz</a>
-  <nav class="m"><a href="#about">About</a><a href="#sets">Sets</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
+  <nav class="m"><a href="#about">About</a><a href="#sets">Sets</a><a href="#records">Records</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
 </header>
 <main>
 <section class="hero">
@@ -111,8 +111,74 @@
   </div>
 </section>
 
+<section id="records" class="sec">
+  <h2 class="m"><span>03</span>Records</h2>
+  <div class="body wide">
+    <p class="lede m">1,279 records catalogued on Discogs (2026-11-23), the same list behind the daily record on @carlosturntables. Each one opens its Discogs page.</p>
+    <div class="rc-tools">
+      <input type="search" id="rc-q" placeholder="Search artist, title, label" aria-label="Search the records">
+      <select id="rc-sort" aria-label="Sort the records">
+        <option value="added">Recently added</option><option value="artist">Artist A–Z</option>
+        <option value="new">Year, newest</option><option value="old">Year, oldest</option>
+      </select>
+    </div>
+    <div class="rc-chips m" id="rc-chips"></div>
+    <p class="m rc-n" id="rc-n"></p>
+    <ul class="rc-grid" id="rc-grid"></ul>
+    <button type="button" class="rc-more m" id="rc-more" hidden>Show more</button>
+  </div>
+</section>
+<script>
+// Records: loaded from records.json (tools/fetch_discogs.py), drawn 60 at a time.
+(function () {
+  const STEP = 60, grid = document.getElementById('rc-grid'), more = document.getElementById('rc-more'),
+        q = document.getElementById('rc-q'), sort = document.getElementById('rc-sort'),
+        chips = document.getElementById('rc-chips'), n = document.getElementById('rc-n');
+  let all = [], list = [], shown = 0, genre = '';
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'})[c]);
+  function draw(reset) {
+    if (reset) { grid.innerHTML = ''; shown = 0; }
+    const html = list.slice(shown, shown + STEP).map(r =>
+      `<li><a href="https://www.discogs.com/release/${r.id}" target="_blank" rel="noopener">` +
+      (r.thumb ? `<img src="${esc(r.thumb)}" alt="" loading="lazy" width="150" height="150">` : '<span class="nocover"></span>') +
+      `<span class="ra">${esc(r.artist)}</span><span class="rt">${esc(r.title)}</span>` +
+      `<span class="ry m">${r.year || ''}${r.year && r.label ? ' · ' : ''}${esc(r.label)}</span></a></li>`).join('');
+    grid.insertAdjacentHTML('beforeend', html);
+    shown = Math.min(shown + STEP, list.length);
+    more.hidden = shown >= list.length;
+    n.textContent = list.length === all.length ? `${all.length.toLocaleString('en')} records` :
+      `${list.length.toLocaleString('en')} of ${all.length.toLocaleString('en')} records`;
+  }
+  function apply() {
+    const t = q.value.trim().toLowerCase();
+    list = all.filter(r => (!genre || r.genres.includes(genre)) &&
+      (!t || (r.artist + ' ' + r.title + ' ' + r.label + ' ' + r.styles.join(' ')).toLowerCase().includes(t)));
+    const s = sort.value;
+    if (s === 'artist') list.sort((a, b) => a.artist.localeCompare(b.artist));
+    else if (s === 'new') list.sort((a, b) => (b.year || 0) - (a.year || 0));
+    else if (s === 'old') list.sort((a, b) => (a.year || 9999) - (b.year || 9999));
+    draw(true);
+  }
+  fetch('records.json').then(r => r.json()).then(d => {
+    all = d.records; list = all.slice();
+    const g = {}; all.forEach(r => r.genres.forEach(x => g[x] = (g[x] || 0) + 1));
+    chips.innerHTML = '<button type="button" class="on" data-g="">All</button>' +
+      Object.entries(g).sort((a, b) => b[1] - a[1]).slice(0, 8)
+        .map(([k, v]) => `<button type="button" data-g="${esc(k)}">${esc(k)} <i>${v}</i></button>`).join('');
+    chips.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      chips.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+      genre = b.dataset.g; apply();
+    });
+    q.addEventListener('input', apply); sort.addEventListener('change', apply);
+    more.addEventListener('click', () => draw(false));
+    draw(true);
+  });
+})();
+</script>
+
 <section id="photos" class="sec">
-  <h2 class="m"><span>03</span>Photos</h2>
+  <h2 class="m"><span>04</span>Photos</h2>
   <div class="body grid"><figure>
   <img src="img/ailime-decks-1200.jpg" srcset="img/ailime-decks-600.jpg 600w, img/ailime-decks-1200.jpg 1200w" sizes="(max-width: 700px) 100vw, 33vw" alt="Two turntables and a mixer lit in red and blue in a dark bar" loading="lazy">
   <figcaption class="m"><a href="https://www.instagram.com/p/CpNqwmrqImp/" target="_blank" rel="noopener">Ailime&#x27; sessions · Feb 2023</a></figcaption>
@@ -165,7 +231,7 @@
 </section>
 
 <section id="fanzine" class="sec">
-  <h2 class="m"><span>04</span>Fanzine</h2>
+  <h2 class="m"><span>05</span>Fanzine</h2>
   <div class="body">
     <p>A music fanzine he writes on Substack as Abe Murakami. <a href="https://abemurakami.substack.com/" target="_blank" rel="noopener">Abe Murakami Substack ↗</a></p>
     <ol class="fz year"><li><a class="r" href="https://abemurakami.substack.com/p/my-obsession-for-summer-in-the-city" target="_blank" rel="noopener"><span class="dt m">19.02.26</span><span class="vn">No.1: My Obsession for “Summer in the City”</span></a></li><li><a class="r" href="https://abemurakami.substack.com/p/no2-the-lot-radio-brooklyn-new-york" target="_blank" rel="noopener"><span class="dt m">25.02.26</span><span class="vn">No.2: The Lot Radio, Brooklyn New York</span></a></li><li><a class="r" href="https://abemurakami.substack.com/p/the-rough-trade-story-from-record" target="_blank" rel="noopener"><span class="dt m">12.03.26</span><span class="vn">No.3: The Rough Trade Story: From Record Shop to Indie Empire</span></a></li><li><a class="r" href="https://abemurakami.substack.com/p/ep-4-concerts-a-emporter-la-blogotheque" target="_blank" rel="noopener"><span class="dt m">19.03.26</span><span class="vn">Ep. 4: Concerts à Emporter, La Blogothèque</span></a></li></ol>
@@ -173,7 +239,7 @@
 </section>
 
 <section id="links" class="sec">
-  <h2 class="m"><span>05</span>Links</h2>
+  <h2 class="m"><span>06</span>Links</h2>
   <div class="body"><ul class="lk"><li><a href="https://www.instagram.com/carlosturntables/" target="_blank" rel="noopener"><span class="m">Instagram</span><span>@carlosturntables</span><span class="ar">↗</span></a></li><li><a href="https://neomrecords.carlodemarchis.it/" target="_blank" rel="noopener"><span class="m">Label</span><span>NEOM Records</span><span class="ar">↗</span></a></li><li><a href="https://carlodemarchis.it/" target="_blank" rel="noopener"><span class="m">Home</span><span>carlodemarchis.it</span><span class="ar">↗</span></a></li></ul></div>
 </section>
 </main>

@@ -128,6 +128,8 @@ def page(theme):
     n_res = max(DATA.get("residency", {}).get("thursdays", 0) - sum(1 for g in gigs if g.get("residency")), 0)
     n_sets = len(gigs) + n_res
     hero = DATA["photos"][0]
+    rc = json.loads((ROOT / "records.json").read_text())
+    rc_count, rc_date = rc["count"], rc["fetched"]
     fz = DATA.get("fanzine")
     fanzine = "" if not fz else "".join(
         f'<li><a class="r" href="{e(i["url"])}" target="_blank" rel="noopener"><span class="dt m">{i["date"][8:]}.{i["date"][5:7]}.{i["date"][2:4]}</span>'
@@ -171,7 +173,7 @@ def page(theme):
 <body class="t-{theme}">
 <header class="bar">
   <a class="logo" href="./">selectazzz</a>
-  <nav class="m"><a href="#about">About</a><a href="#sets">Sets</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
+  <nav class="m"><a href="#about">About</a><a href="#sets">Sets</a><a href="#records">Records</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
 </header>
 <main>
 <section class="hero">
@@ -209,13 +211,79 @@ def page(theme):
   </div>
 </section>
 
+<section id="records" class="sec">
+  <h2 class="m"><span>03</span>Records</h2>
+  <div class="body wide">
+    <p class="lede m">{rc_count:,} records catalogued on Discogs ({rc_date}), the same list behind the daily record on @carlosturntables. Each one opens its Discogs page.</p>
+    <div class="rc-tools">
+      <input type="search" id="rc-q" placeholder="Search artist, title, label" aria-label="Search the records">
+      <select id="rc-sort" aria-label="Sort the records">
+        <option value="added">Recently added</option><option value="artist">Artist A–Z</option>
+        <option value="new">Year, newest</option><option value="old">Year, oldest</option>
+      </select>
+    </div>
+    <div class="rc-chips m" id="rc-chips"></div>
+    <p class="m rc-n" id="rc-n"></p>
+    <ul class="rc-grid" id="rc-grid"></ul>
+    <button type="button" class="rc-more m" id="rc-more" hidden>Show more</button>
+  </div>
+</section>
+<script>
+// Records: loaded from records.json (tools/fetch_discogs.py), drawn 60 at a time.
+(function () {{
+  const STEP = 60, grid = document.getElementById('rc-grid'), more = document.getElementById('rc-more'),
+        q = document.getElementById('rc-q'), sort = document.getElementById('rc-sort'),
+        chips = document.getElementById('rc-chips'), n = document.getElementById('rc-n');
+  let all = [], list = [], shown = 0, genre = '';
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({{'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}})[c]);
+  function draw(reset) {{
+    if (reset) {{ grid.innerHTML = ''; shown = 0; }}
+    const html = list.slice(shown, shown + STEP).map(r =>
+      `<li><a href="https://www.discogs.com/release/${{r.id}}" target="_blank" rel="noopener">` +
+      (r.thumb ? `<img src="${{esc(r.thumb)}}" alt="" loading="lazy" width="150" height="150">` : '<span class="nocover"></span>') +
+      `<span class="ra">${{esc(r.artist)}}</span><span class="rt">${{esc(r.title)}}</span>` +
+      `<span class="ry m">${{r.year || ''}}${{r.year && r.label ? ' · ' : ''}}${{esc(r.label)}}</span></a></li>`).join('');
+    grid.insertAdjacentHTML('beforeend', html);
+    shown = Math.min(shown + STEP, list.length);
+    more.hidden = shown >= list.length;
+    n.textContent = list.length === all.length ? `${{all.length.toLocaleString('en')}} records` :
+      `${{list.length.toLocaleString('en')}} of ${{all.length.toLocaleString('en')}} records`;
+  }}
+  function apply() {{
+    const t = q.value.trim().toLowerCase();
+    list = all.filter(r => (!genre || r.genres.includes(genre)) &&
+      (!t || (r.artist + ' ' + r.title + ' ' + r.label + ' ' + r.styles.join(' ')).toLowerCase().includes(t)));
+    const s = sort.value;
+    if (s === 'artist') list.sort((a, b) => a.artist.localeCompare(b.artist));
+    else if (s === 'new') list.sort((a, b) => (b.year || 0) - (a.year || 0));
+    else if (s === 'old') list.sort((a, b) => (a.year || 9999) - (b.year || 9999));
+    draw(true);
+  }}
+  fetch('records.json').then(r => r.json()).then(d => {{
+    all = d.records; list = all.slice();
+    const g = {{}}; all.forEach(r => r.genres.forEach(x => g[x] = (g[x] || 0) + 1));
+    chips.innerHTML = '<button type="button" class="on" data-g="">All</button>' +
+      Object.entries(g).sort((a, b) => b[1] - a[1]).slice(0, 8)
+        .map(([k, v]) => `<button type="button" data-g="${{esc(k)}}">${{esc(k)}} <i>${{v}}</i></button>`).join('');
+    chips.addEventListener('click', e => {{
+      const b = e.target.closest('button'); if (!b) return;
+      chips.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+      genre = b.dataset.g; apply();
+    }});
+    q.addEventListener('input', apply); sort.addEventListener('change', apply);
+    more.addEventListener('click', () => draw(false));
+    draw(true);
+  }});
+}})();
+</script>
+
 <section id="photos" class="sec">
-  <h2 class="m"><span>03</span>Photos</h2>
+  <h2 class="m"><span>04</span>Photos</h2>
   <div class="body grid">{photos}</div>
 </section>
 
 <section id="fanzine" class="sec">
-  <h2 class="m"><span>04</span>Fanzine</h2>
+  <h2 class="m"><span>05</span>Fanzine</h2>
   <div class="body">
     <p>{e(fz['intro']) if fz else ''} <a href="{e(fz['url']) if fz else ''}" target="_blank" rel="noopener">{e(fz['name']) if fz else ''} ↗</a></p>
     <ol class="fz year">{fanzine}</ol>
@@ -223,7 +291,7 @@ def page(theme):
 </section>
 
 <section id="links" class="sec">
-  <h2 class="m"><span>05</span>Links</h2>
+  <h2 class="m"><span>06</span>Links</h2>
   <div class="body"><ul class="lk">{links}</ul></div>
 </section>
 </main>
@@ -239,7 +307,7 @@ def page(theme):
 def build(out, theme):
     out.mkdir(parents=True, exist_ok=True)
     (out / "index.html").write_text(page(theme))
-    for f in ("site.css", "favicon.svg", "og.jpg"):
+    for f in ("site.css", "favicon.svg", "og.jpg", "records.json"):
         shutil.copy(ROOT / f, out / f)
     shutil.copytree(ROOT / "themes", out / "themes", dirs_exist_ok=True)
     shutil.copytree(ROOT / "img", out / "img", dirs_exist_ok=True)

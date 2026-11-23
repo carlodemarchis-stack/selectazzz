@@ -82,6 +82,31 @@ figcaption a:hover { color: var(--ink); }
 .fz { list-style: none; margin: 18px 0 0; padding: 0; border-top: 1px solid var(--ink); }
 .fz li .r { grid-template-columns: 90px 1fr; }
 
+/* records (Discogs) */
+.body.wide { max-width: none; }
+.rc-tools { display: flex; gap: 12px; flex-wrap: wrap; margin: 0 0 14px; }
+.rc-tools input, .rc-tools select { font: 15px var(--text); color: var(--ink); background: transparent;
+  border: 1px solid var(--rule); border-radius: 0; padding: 10px 12px; }
+.rc-tools input { flex: 1 1 260px; }
+.rc-tools select { flex: 0 0 auto; }
+.rc-tools select option { color: #111; }
+.rc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.rc-chips button { font: inherit; text-transform: inherit; letter-spacing: inherit; color: var(--mute); background: none;
+  border: 1px solid var(--rule); padding: 6px 10px; cursor: pointer; }
+.rc-chips button i { font-style: normal; opacity: .6; margin-left: 4px; }
+.rc-chips button.on, .rc-chips button:hover { color: var(--ink); border-color: var(--ink); }
+.rc-n { color: var(--mute); margin: 0 0 16px; }
+.rc-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 22px 16px; }
+.rc-grid li { content-visibility: auto; contain-intrinsic-size: 140px 230px; }
+.rc-grid a { display: block; text-decoration: none; }
+.rc-grid img, .rc-grid .nocover { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; background: var(--rule); }
+.rc-grid .ra { display: block; margin-top: 8px; font-size: 14px; font-weight: 700; line-height: 1.25; }
+.rc-grid .rt { display: block; font-size: 14px; line-height: 1.25; }
+.rc-grid .ry { display: block; color: var(--mute); margin-top: 4px; font-size: 11px; }
+.rc-grid a:hover .rt { color: var(--hot); }
+.rc-more { display: block; margin: 28px auto 0; padding: 12px 26px; background: none; color: var(--ink); border: 1px solid var(--ink); cursor: pointer; }
+.rc-more:hover { background: var(--ink); color: var(--bg); }
+
 /* photos */
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: none; }
 .grid figure { margin: 0; }
@@ -115,5 +140,7 @@ footer a { text-decoration: none; }
   .year li .r { grid-template-columns: 38px 50px 1fr; }
   .year .pl { grid-column: 3; text-align: left; }
   .grid { grid-template-columns: 1fr; }
+  .rc-grid { grid-template-columns: repeat(2, 1fr); gap: 18px 12px; }
+  .bar nav a:nth-child(5) { display: none; }
   .lk a { grid-template-columns: 92px 1fr auto; font-size: 17px; }
 }
