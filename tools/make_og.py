@@ -20,8 +20,8 @@ x = 56
 for ch in "selectazzz":  # tight tracking, like the page
     d.text((x, 200), ch, font=bold, fill=INK)
     x += d.textlength(ch, font=bold) - 7
-for i, line in enumerate(["Spiritual jazz, nu-jazz, house and world music.",
-                          "Mostly vinyl, now hybrid."]):
+for i, line in enumerate(["Spiritual jazz, nu-jazz, funk, soul, house",
+                          "and world music. Mostly vinyl, now hybrid."]):
     d.text((62, 390 + i * 42), line, font=reg, fill=INK)
 d.text((62, 520), "SELECTAZZZ.CARLODEMARCHIS.IT", font=mono, fill=MUTE)
 og.save(ROOT / "og.jpg", quality=88)
