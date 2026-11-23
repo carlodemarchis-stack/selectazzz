@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build the Selectazzz site into docs/ from data.json + site.json. Stdlib only.
 
-One page: hero, about, dates (grouped by year, most-played venues), photos, links.
+One page laid out like a record sleeve: hero, about, the dates as a numbered
+tracklist (most-played venues first), photos, links.
 """
 import json, pathlib, shutil
 from collections import Counter
@@ -11,19 +12,12 @@ ROOT = pathlib.Path(__file__).resolve().parent
 DOCS = ROOT / "docs"
 SITE = json.loads((ROOT / "site.json").read_text())
 DATA = json.loads((ROOT / "data.json").read_text())
-MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
-# Palette lifted from the Carlo's Turntables logo, one colour per year.
-YEAR_COLOURS = ["#f68d04", "#2a9fd8", "#d0103f", "#13894b", "#f5b400"]
 
 
 def when(d):
-    """'2023-03-11' -> '11 Mar', '2025-04' -> 'Apr', '2023' -> 'date n/a'."""
+    """'2023-03-11' -> '11.03', '2025-04' -> '··.04', '2023' -> '··.··'."""
     p = d.split("-")
-    if len(p) == 3:
-        return f"{int(p[2])} {MONTHS[int(p[1]) - 1]}"
-    if len(p) == 2:
-        return MONTHS[int(p[1]) - 1]
-    return "—"
+    return f"{p[2] if len(p) > 2 else '··'}.{p[1] if len(p) > 1 else '··'}"
 
 
 def src_link(s):
@@ -43,43 +37,38 @@ def umami():
             f'data-domains="{SITE["host"]}"></script>\n<!-- /Umami -->')
 
 
-def wordmark(text, cls):
-    """Layered wordmark: two offset back layers and a translucent front, like the logo."""
-    t = e(text)
-    return (f'<span class="{cls}" aria-label="{t}"><span class="l1" aria-hidden="true">{t}</span>'
-            f'<span class="l2" aria-hidden="true">{t}</span><span class="l3" aria-hidden="true">{t}</span></span>')
-
-
 def dates_section(gigs):
+    """Every set numbered in order played (No. 001 = first), newest first, grouped by year.
+    data.json keeps the sets in the order of the source list, which is chronological; a date
+    without month (2023's second private open-air party) keeps its place from that list."""
+    ordered = gigs
+    num = {id(g): i + 1 for i, g in enumerate(ordered)}
     by_year = {}
-    for g in gigs:
+    for g in reversed(ordered):
         by_year.setdefault(g["date"][:4], []).append(g)
-    years = sorted(by_year, reverse=True)
     blocks = []
-    for i, y in enumerate(years):
+    for y, gs in by_year.items():
         rows = []
-        for g in sorted(by_year[y], key=lambda g: g["date"], reverse=True):
+        for g in gs:
             note = f'<span class="nt">{e(g["note"])}</span>' if g.get("note") else ""
-            place = f'<span class="pl">{e(g["place"])}</span>' if g.get("place") else ""
-            star = ' class="away"' if "New York" in g.get("place", "") else ""
-            rows.append(f'<li{star}><a href="{src_link(g["src"])}" target="_blank" rel="noopener">'
-                        f'<span class="dt">{when(g["date"])}</span>'
-                        f'<span class="vn">{e(g["venue"])}{note}</span>{place}</a></li>')
-        n = len(by_year[y])
-        blocks.append(f"""<section class="year" style="--c:{YEAR_COLOURS[i % len(YEAR_COLOURS)]}">
-  <h3 class="d"><span>{y}</span><small>{n} {'date' if n == 1 else 'dates'}</small></h3>
+            rows.append(f'<li><a href="{src_link(g["src"])}" target="_blank" rel="noopener">'
+                        f'<span class="no m">{num[id(g)]:03d}</span>'
+                        f'<span class="dt m">{when(g["date"])}</span>'
+                        f'<span class="vn">{e(g["venue"])}{note}</span>'
+                        f'<span class="pl">{e(g.get("place", ""))}</span></a></li>')
+        n = len(gs)
+        blocks.append(f"""<section class="year">
+  <h3><span class="m">{y}</span><span class="m c">{n} {'set' if n == 1 else 'sets'}</span></h3>
   <ol>{''.join(rows)}</ol>
 </section>""")
     return "".join(blocks)
 
 
 def venues(gigs):
-    """Most-played venues (2+ dates), as bars."""
+    """Most-played venues (2+ sets), as a short credits-style list."""
     c = Counter(g["venue"] for g in gigs if not g["venue"].lower().startswith("private"))
-    top = [(v, n) for v, n in c.most_common() if n > 1]
-    mx = top[0][1]
-    rows = "".join(f'<li><span class="vn">{e(v)}</span><span class="vb" style="--w:{n / mx:.3f}"></span>'
-                   f'<span class="n">{n}</span></li>' for v, n in top)
+    rows = "".join(f'<li><span>{e(v)}</span><i></i><span class="m">{n:02d}</span></li>'
+                   for v, n in c.most_common() if n > 1)
     return f'<ul class="venues">{rows}</ul>'
 
 
@@ -87,16 +76,17 @@ def page():
     a, gigs = DATA["about"], DATA["gigs"]
     n_venues = len({g["venue"] for g in gigs if not g["venue"].lower().startswith("private")})
     first = min(g["date"][:4] for g in gigs)
+    hero = DATA["photos"][0]
     photos = "".join(f"""<figure{' class="contain"' if p.get('fit') == 'contain' else ''}>
-  <img src="img/{p['file']}-1200.jpg" srcset="img/{p['file']}-600.jpg 600w, img/{p['file']}-1200.jpg 1200w" sizes="(max-width: 700px) 100vw, 50vw" alt="{e(p['alt'])}" loading="lazy">
-  <figcaption>{e(p['caption'])}</figcaption>
-</figure>""" for p in DATA["photos"])
-    links = "".join(f'<a href="{e(l["url"])}" target="_blank" rel="noopener"><span class="k">{e(l["label"])}</span>'
-                    f'<span class="d">{e(l["handle"])} ↗</span></a>' for l in DATA["links"])
+  <img src="img/{p['file']}-1200.jpg" srcset="img/{p['file']}-600.jpg 600w, img/{p['file']}-1200.jpg 1200w" sizes="(max-width: 700px) 100vw, 33vw" alt="{e(p['alt'])}" loading="lazy">
+  <figcaption class="m">{e(p['caption'])}</figcaption>
+</figure>""" for p in DATA["photos"][1:])
+    links = "".join(f'<li><a href="{e(l["url"])}" target="_blank" rel="noopener"><span class="m">{e(l["label"])}</span>'
+                    f'<span>{e(l["handle"])}</span><span class="ar">↗</span></a></li>' for l in DATA["links"])
     paras = "".join(f"<p>{e(p)}</p>" for p in a["paragraphs"])
-    stores = " · ".join(e(s) for s in a["stores"])
-    title = "Selectazzz · Carlo's Turntables"
-    desc = f"Selectazzz: Carlo De Marchis's all-vinyl selector sets. {len(gigs)} dates since {first}, Torino to New York."
+    stores = "".join(f"<li>{e(s)}</li>" for s in a["stores"])
+    title = "Selectazzz · Carlo De Marchis"
+    desc = f"Selectazzz: Carlo De Marchis's selector sets, mostly vinyl, now hybrid. {len(gigs)} sets since {first}."
     url = f"https://{SITE['host']}/"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -106,7 +96,7 @@ def page():
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{url}">
-<meta name="theme-color" content="#01003c">
+<meta name="theme-color" content="#ecebe6">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{e(title)}">
@@ -118,50 +108,61 @@ def page():
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="site.css?v={SITE['css_version']}">
 {umami()}
 </head>
 <body>
 <header class="bar">
-  <a class="logo d" href="./">Selectazzz</a>
-  <nav class="k"><a href="#about">About</a><a href="#dates">Dates</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
+  <a class="logo" href="./">selectazzz</a>
+  <nav class="m"><a href="#about">About</a><a href="#sets">Sets</a><a href="#photos">Photos</a><a href="#links">Links</a></nav>
 </header>
 <main>
 <section class="hero">
-  <h1 class="d">{wordmark('Selectazzz', 'wm')}</h1>
-  <p class="strap d">{wordmark("Carlo's Turntables", 'wm sub')}</p>
-  <p class="tag">{e(a['tagline'])}</p>
-  <ul class="stats k"><li><b>{len(gigs)}</b> dates</li><li><b>{n_venues}</b> venues</li><li><b>2,000+</b> records</li><li>since <b>{first}</b></li></ul>
+  <div class="ht">
+    <p class="m kick">Carlo De Marchis · Selector · Torino</p>
+    <h1>selectazzz</h1>
+    <p class="tag">{e(a['tagline'])}</p>
+    <dl class="stats m">
+      <div><dt>Sets</dt><dd>{len(gigs)}</dd></div>
+      <div><dt>Venues</dt><dd>{n_venues}</dd></div>
+      <div><dt>Records</dt><dd>2,000+</dd></div>
+      <div><dt>Since</dt><dd>{first}</dd></div>
+    </dl>
+  </div>
+  <figure class="hp"><img src="img/{hero['file']}-1200.jpg" srcset="img/{hero['file']}-600.jpg 600w, img/{hero['file']}-1200.jpg 1200w" sizes="(max-width: 860px) 100vw, 42vw" alt="{e(hero['alt'])}"><figcaption class="m">{e(hero['caption'])}</figcaption></figure>
 </section>
 
-<section id="about" class="about">
-  <h2 class="d">About</h2>
-  <div class="cols">
-    <div class="txt">{paras}<p class="stores"><span class="k">{e(a['stores_intro'])}</span> {stores}</p></div>
-    <figure class="logo-img"><img src="img/ct-logo-1200.jpg" alt="The Carlo's Turntables logo: overlapping rounded letters in orange, red, green and blue on navy" loading="lazy"></figure>
+<section id="about" class="sec">
+  <h2 class="m"><span>01</span>About</h2>
+  <div class="body">
+    {paras}
+    <div class="stores"><p class="m">{e(a['stores_intro'])}</p><ul>{stores}</ul></div>
   </div>
 </section>
 
-<section id="dates" class="dates">
-  <div class="sh"><h2 class="d">Dates</h2><span class="k">{len(gigs)} sets · each links to its source</span></div>
-  <div class="most"><h3 class="k">Most played</h3>{venues(gigs)}</div>
-  <div class="years">{dates_section(gigs)}</div>
+<section id="sets" class="sec">
+  <h2 class="m"><span>02</span>Sets</h2>
+  <div class="body">
+    <p class="lede m">{len(gigs)} sets, numbered in the order played. Each one links to where it was posted.</p>
+    <div class="most"><p class="m">Most played</p>{venues(gigs)}</div>
+    {dates_section(gigs)}
+  </div>
 </section>
 
-<section id="photos" class="photos">
-  <div class="sh"><h2 class="d">Photos</h2></div>
-  <div class="grid">{photos}</div>
+<section id="photos" class="sec">
+  <h2 class="m"><span>03</span>Photos</h2>
+  <div class="body grid">{photos}</div>
 </section>
 
-<section id="links" class="links">
-  <div class="sh"><h2 class="d">Links</h2></div>
-  <div class="lk">{links}</div>
+<section id="links" class="sec">
+  <h2 class="m"><span>04</span>Links</h2>
+  <div class="body"><ul class="lk">{links}</ul></div>
 </section>
 </main>
-<footer class="k">
-  <span>© Carlo De Marchis · Selectazzz</span>
-  <span><a href="https://carlodemarchis.it/">carlodemarchis.it</a></span>
+<footer class="m">
+  <span>© Carlo De Marchis</span>
+  <a href="https://carlodemarchis.it/">carlodemarchis.it</a>
 </footer>
 </body>
 </html>
@@ -175,7 +176,7 @@ def main():
         shutil.copy(ROOT / f, DOCS / f)
     shutil.copytree(ROOT / "img", DOCS / "img", dirs_exist_ok=True)
     (DOCS / "CNAME").write_text(SITE["host"] + "\n")
-    print(f"built docs/index.html: {len(DATA['gigs'])} dates, {len(DATA['photos'])} photos")
+    print(f"built docs/index.html: {len(DATA['gigs'])} sets, {len(DATA['photos'])} photos")
 
 
 if __name__ == "__main__":

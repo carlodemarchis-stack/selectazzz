@@ -25,6 +25,11 @@ Everything on the page comes from two of Carlo's own pages (details in `research
 Carlo chose to leave out the Spotify set playlists and the booking email (2026-11-23).
 The 2023 "Private open-air party" has no month on Medium, so it shows "—".
 
-Design: palette from the Carlo's Turntables logo (navy, red, green, orange/yellow, blue/cyan), the
-"Selectazzz" wordmark is three offset layers of Unbounded 900 (Google Fonts), text in Helvetica Neue.
-`og.jpg` is a 1200x630 headless-Chrome screenshot of the hero.
+Copy: Carlo, 2026-11-23: "mostly vinyl", now also hybrid with digital versions of his own tracks
+(NEOM Records) and new music. He asked to leave out the old Carlo's Turntables logo.
+
+Design (second pass, Carlo asked for "cool and understated"): the back of a record sleeve. Paper
+#ecebe6, black ink, one rust accent on hover; "selectazzz" in lowercase Helvetica Neue Bold with
+tight tracking; IBM Plex Mono (Google Fonts) for credits, numbers and dates; sets numbered like a
+catalogue in the order played. Hero photo in black and white.
+`og.jpg` comes from `python3 tools/make_og.py` (Pillow, system Helvetica Neue + Menlo).

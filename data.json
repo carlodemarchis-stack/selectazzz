@@ -1,65 +1,307 @@
 {
   "about": {
-    "tagline": "Strictly vinyl. 4+ hour sets of spiritual jazz, nu-jazz, electronic music, house and world music. No beat matching. Just pure music.",
+    "tagline": "Spiritual jazz, nu-jazz, electronic music, house and world music. Mostly vinyl, now in hybrid mode with digital versions of his own tracks and new music. Four hours or more. No beat matching.",
     "paragraphs": [
-      "Selectazzz is Carlo De Marchis behind the turntables, the selector activity he has played out as Carlo's Turntables since October 2022. Every set comes from his collection of more than 2,000 records and runs four hours or more.",
-      "Each set is selected in advance to fit in one UDG bag, so it can hold more than one track from the same record. It is put together to be played on a Mastersounds Radius Two Valve mixer, and tracks from the same record never follow each other.",
-      "It is the opposite of his work in AI and generative AI: a completely manual selection that starts from physical records. Most of the nights are in Torino, and in May 2024 he played an all-vinyl selector set at Studio151, a listening bar in Alphabet City, New York."
+      "Selectazzz is Carlo De Marchis behind the turntables: the selector sets he has played as Carlo's Turntables since October 2022, built on his collection of more than 2,000 records and running four hours or more.",
+      "The sets are mostly vinyl. They now also run in hybrid mode, adding digital versions of his own tracks, released on his label NEOM Records, and new music.",
+      "Each vinyl selection is prepared in advance to fit in one UDG bag, so it can hold more than one track from the same record. It is put together to be played on a Mastersounds Radius Two Valve mixer, and tracks from the same record never follow each other.",
+      "The selection is done by hand, starting from physical records: the other side of his work in AI and generative AI. Most of the nights are in Torino, and in May 2024 he played an all-vinyl selector set at Studio151, a listening bar in Alphabet City, New York."
     ],
     "stores_intro": "Records come from",
-    "stores": ["Militant Sound, Torino", "Sounds of the Universe, London", "Phonica, London", "Kagoshima, Napoli", "Serendeepity, Milano"]
+    "stores": [
+      "Militant Sound, Torino",
+      "Sounds of the Universe, London",
+      "Phonica, London",
+      "Kagoshima, Napoli",
+      "Serendeepity, Milano"
+    ]
   },
   "gigs": [
-    {"date": "2022-10-14", "venue": "Ailime'", "place": "Torino", "src": "medium"},
-    {"date": "2022-11-11", "venue": "Ailime'", "place": "Torino", "src": "medium"},
-    {"date": "2022-12-16", "venue": "Ailime'", "place": "Torino", "src": "medium"},
-    {"date": "2023-01-26", "venue": "Ailime'", "place": "Torino", "src": "medium"},
-    {"date": "2023-03-09", "venue": "Ailime'", "place": "Torino", "src": "medium"},
-    {"date": "2023-03-11", "venue": "OffTopic", "place": "Torino", "note": "DJ set and brunch", "src": "medium"},
-    {"date": "2023-03-18", "venue": "Private open-air party", "place": "", "src": "medium"},
-    {"date": "2023-04-13", "venue": "Ailime'", "place": "Torino", "src": "medium"},
-    {"date": "2023-04-14", "venue": "100 Vini & Affini, Green Pea", "place": "Torino", "note": "100 Vinili", "src": "medium"},
-    {"date": "2023-05-12", "venue": "Ailime'", "place": "Torino", "src": "medium"},
-    {"date": "2023-07-14", "venue": "Lumen Gourmet", "place": "", "note": "Open air", "src": "medium"},
-    {"date": "2023", "venue": "Private open-air party", "place": "", "src": "medium"},
-    {"date": "2023-10-05", "venue": "100 Vini & Affini, Green Pea", "place": "Torino", "note": "100 Vinili", "src": "medium"},
-    {"date": "2023-10-13", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2023-11-11", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2023-11-17", "venue": "Faber meeting, Toolbox Coworking", "place": "Torino", "src": "medium"},
-    {"date": "2023-11-25", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2023-12-12", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2023-12-16", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2023-12-22", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2023-12-27", "venue": "Private party", "place": "San Salvario, Torino", "src": "medium"},
-    {"date": "2023-12-31", "venue": "Private party", "place": "Torino", "src": "medium"},
-    {"date": "2024-02-07", "venue": "Affini", "place": "San Salvario, Torino", "src": "ig:C27CDhvNDZ8"},
-    {"date": "2024-02-10", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2024-02-17", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2024-02-28", "venue": "Affini", "place": "San Salvario, Torino", "src": "medium"},
-    {"date": "2024-03-16", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2024-04-20", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2024-04-21", "venue": "Art opening, Laura Milani", "place": "", "src": "medium"},
-    {"date": "2024-05-11", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2024-05-29", "venue": "Studio151", "place": "Alphabet City, New York", "note": "All-vinyl selector set at a listening bar", "src": "medium"},
-    {"date": "2024-06-15", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2024-09-16", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2024-09-19", "venue": "Private event, Casa delle Lampadine", "place": "Torino", "src": "medium"},
-    {"date": "2024-09-21", "venue": "Emmestudio opening", "place": "Docks Dora, Torino", "src": "medium"},
-    {"date": "2024-09-25", "venue": "Private event, LIFTT", "place": "Italian Tech Week, Torino", "src": "medium"},
-    {"date": "2024-10-28", "venue": "Vermoutheria Pelitis", "place": "Murazzi, Torino", "src": "medium"},
-    {"date": "2025-04", "venue": "Banco Vini", "place": "Torino", "note": "Vinyl session", "src": "ig:DH9qC5yNX47"},
-    {"date": "2026-03-12", "venue": "Tono Metzger", "place": "", "note": "Ddoce Casa release party (Abe Murakami, NEOM Records)", "src": "ig:DVim_0HjpgQ"}
+    {
+      "date": "2022-10-14",
+      "venue": "Ailime'",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2022-11-11",
+      "venue": "Ailime'",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2022-12-16",
+      "venue": "Ailime'",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-01-26",
+      "venue": "Ailime'",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-03-09",
+      "venue": "Ailime'",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-03-11",
+      "venue": "OffTopic",
+      "place": "Torino",
+      "note": "DJ set and brunch",
+      "src": "medium"
+    },
+    {
+      "date": "2023-03-18",
+      "venue": "Private open-air party",
+      "place": "",
+      "src": "medium"
+    },
+    {
+      "date": "2023-04-13",
+      "venue": "Ailime'",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-04-14",
+      "venue": "100 Vini & Affini, Green Pea",
+      "place": "Torino",
+      "note": "100 Vinili",
+      "src": "medium"
+    },
+    {
+      "date": "2023-05-12",
+      "venue": "Ailime'",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-07-14",
+      "venue": "Lumen Gourmet",
+      "place": "",
+      "note": "Open air",
+      "src": "medium"
+    },
+    {
+      "date": "2023",
+      "venue": "Private open-air party",
+      "place": "",
+      "src": "medium"
+    },
+    {
+      "date": "2023-10-05",
+      "venue": "100 Vini & Affini, Green Pea",
+      "place": "Torino",
+      "note": "100 Vinili",
+      "src": "medium"
+    },
+    {
+      "date": "2023-10-13",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-11-11",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-11-17",
+      "venue": "Faber meeting, Toolbox Coworking",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-11-25",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-12-12",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-12-16",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-12-22",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-12-27",
+      "venue": "Private party",
+      "place": "San Salvario, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2023-12-31",
+      "venue": "Private party",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-02-07",
+      "venue": "Affini",
+      "place": "San Salvario, Torino",
+      "src": "ig:C27CDhvNDZ8"
+    },
+    {
+      "date": "2024-02-10",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-02-17",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-02-28",
+      "venue": "Affini",
+      "place": "San Salvario, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-03-16",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-04-20",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-04-21",
+      "venue": "Art opening, Laura Milani",
+      "place": "",
+      "src": "medium"
+    },
+    {
+      "date": "2024-05-11",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-05-29",
+      "venue": "Studio151",
+      "place": "Alphabet City, New York",
+      "note": "All-vinyl selector set at a listening bar",
+      "src": "medium"
+    },
+    {
+      "date": "2024-06-15",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-09-16",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-09-19",
+      "venue": "Private event, Casa delle Lampadine",
+      "place": "Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-09-21",
+      "venue": "Emmestudio opening",
+      "place": "Docks Dora, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-09-25",
+      "venue": "Private event, LIFTT",
+      "place": "Italian Tech Week, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2024-10-28",
+      "venue": "Vermoutheria Pelitis",
+      "place": "Murazzi, Torino",
+      "src": "medium"
+    },
+    {
+      "date": "2025-04",
+      "venue": "Banco Vini",
+      "place": "Torino",
+      "note": "Vinyl session",
+      "src": "ig:DH9qC5yNX47"
+    },
+    {
+      "date": "2026-03-12",
+      "venue": "Tono Metzger",
+      "place": "",
+      "note": "Ddoce Casa release party (Abe Murakami, NEOM Records)",
+      "src": "ig:DVim_0HjpgQ"
+    }
   ],
   "photos": [
-    {"file": "studio151", "alt": "Carlo De Marchis at the turntables in front of a wall of records, under red light", "caption": "Studio151, New York · May 2024"},
-    {"file": "decks-bw", "alt": "Carlo De Marchis with headphones at the turntables, black and white", "caption": "At the decks"},
-    {"file": "home-setup", "alt": "Two turntables, a rotary mixer and monitor speakers on a desk", "caption": "Home setup"},
-    {"file": "offtopic-flyer", "fit": "contain", "alt": "Flyer: Carlo's Turntables, DJ set and brunch, Saturday 11 March, OffTopic, Torino", "caption": "OffTopic brunch flyer · March 2023"}
+    {
+      "file": "decks-bw",
+      "alt": "Carlo De Marchis with headphones at the turntables, black and white",
+      "caption": "At the decks"
+    },
+    {
+      "file": "studio151",
+      "alt": "Carlo De Marchis at the turntables in front of a wall of records, under red light",
+      "caption": "Studio151, New York · May 2024"
+    },
+    {
+      "file": "home-setup",
+      "alt": "Two turntables, a rotary mixer and monitor speakers on a desk",
+      "caption": "Home setup"
+    },
+    {
+      "file": "offtopic-flyer",
+      "fit": "contain",
+      "alt": "Flyer: Carlo's Turntables, DJ set and brunch, Saturday 11 March, OffTopic, Torino",
+      "caption": "OffTopic brunch flyer · March 2023"
+    }
   ],
   "links": [
-    {"label": "Instagram", "handle": "@carlosturntables", "url": "https://www.instagram.com/carlosturntables/"},
-    {"label": "Medium", "handle": "Carlo's Turntables", "url": "https://cdm.medium.com/carlos-turntable-playlists-2826ab98480c"},
-    {"label": "Label", "handle": "NEOM Records", "url": "https://neomrecords.carlodemarchis.it/"},
-    {"label": "Home", "handle": "carlodemarchis.it", "url": "https://carlodemarchis.it/"}
+    {
+      "label": "Instagram",
+      "handle": "@carlosturntables",
+      "url": "https://www.instagram.com/carlosturntables/"
+    },
+    {
+      "label": "Medium",
+      "handle": "Carlo's Turntables",
+      "url": "https://cdm.medium.com/carlos-turntable-playlists-2826ab98480c"
+    },
+    {
+      "label": "Label",
+      "handle": "NEOM Records",
+      "url": "https://neomrecords.carlodemarchis.it/"
+    },
+    {
+      "label": "Home",
+      "handle": "carlodemarchis.it",
+      "url": "https://carlodemarchis.it/"
+    }
   ]
 }
