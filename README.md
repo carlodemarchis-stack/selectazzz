@@ -22,6 +22,13 @@ Everything on the page comes from two of Carlo's own pages (details in `research
 - Instagram @carlosturntables: Affini 7 Feb 2024, Banco Vini (posted 2 Apr 2025), and the Ddoce Casa
   release party at Tono Metzger, 12 Mar 2026 (announced in the post).
 
+Instagram photos come from Carlo's archive through the Graph API tokens in
+`linkedin_instagram_automation/.env` (`_TURNTABLES`, `_CARLO`), read-only; Carlo picked them from a
+contact sheet on 2026-11-23. Each caption links to its post. The download lives in `research/ig/` (not in git).
+Told by Carlo, 2026-11-23 (`src: carlo`, no link): Tono Metzger residency since January 2026, every
+Thursday except the first of the month on average; Casa delle Lampadine end-of-summer party in
+September 2024, 2025 and 2026.
+
 Carlo chose to leave out the Spotify set playlists and the booking email (2026-11-23).
 The 2023 "Private open-air party" has no month on Medium, so it shows "—".
 

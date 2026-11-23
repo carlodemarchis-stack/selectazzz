@@ -37,6 +37,8 @@ main, .bar, footer { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 .hp { margin: 0; }
 .hp img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; filter: grayscale(1) contrast(1.05); }
 .hp figcaption, .grid figcaption { color: var(--mute); margin-top: 10px; }
+figcaption a { text-decoration: none; }
+figcaption a:hover { color: var(--ink); }
 
 /* sections: label column + body, like sleeve credits */
 .sec { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 56px 0; border-bottom: 1px solid var(--rule); }
@@ -67,13 +69,13 @@ main, .bar, footer { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 .year h3 .m:first-child { font-size: 13px; font-weight: 500; }
 .year h3 .c { color: var(--mute); }
 .year ol { list-style: none; margin: 0; padding: 0; }
-.year li a { display: grid; grid-template-columns: 44px 58px 1fr auto; column-gap: 14px; align-items: baseline;
+.year li .r { display: grid; grid-template-columns: 44px 58px 1fr auto; column-gap: 14px; align-items: baseline;
   padding: 10px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
 .year .no, .year .dt { color: var(--mute); }
 .year .vn { font-size: 16px; }
 .year .nt { display: block; font-size: 14px; color: var(--mute); }
 .year .pl { font-size: 14px; color: var(--mute); text-align: right; }
-.year li a:hover .vn { color: var(--hot); }
+.year li a.r:hover .vn { color: var(--hot); }
 
 /* photos */
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: none; }
@@ -105,7 +107,7 @@ footer a { text-decoration: none; }
   .tag, .body > p { font-size: 17px; }
   .stats { grid-template-columns: repeat(2, auto); gap: 14px 40px; }
   .stores ul { columns: 1; }
-  .year li a { grid-template-columns: 38px 50px 1fr; }
+  .year li .r { grid-template-columns: 38px 50px 1fr; }
   .year .pl { grid-column: 3; text-align: left; }
   .grid { grid-template-columns: 1fr; }
   .lk a { grid-template-columns: 92px 1fr auto; font-size: 17px; }

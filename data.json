@@ -260,11 +260,25 @@
       "src": "ig:DH9qC5yNX47"
     },
     {
+      "date": "2025-09",
+      "venue": "Casa delle Lampadine",
+      "place": "Torino",
+      "note": "End-of-summer party",
+      "src": "carlo"
+    },
+    {
       "date": "2026-03-12",
       "venue": "Tono Metzger",
       "place": "Torino",
       "note": "Ddoce Casa release party (Abe Murakami, NEOM Records)",
       "src": "ig:DVim_0HjpgQ"
+    },
+    {
+      "date": "2026-09",
+      "venue": "Casa delle Lampadine",
+      "place": "Torino",
+      "note": "End-of-summer party",
+      "src": "carlo"
     },
     {
       "date": "2026-10-29",
@@ -278,7 +292,69 @@
     {
       "file": "decks-bw",
       "alt": "Carlo De Marchis with headphones at the turntables, black and white",
-      "caption": "At the decks"
+      "caption": "100 Vini & Affini · Apr 2023"
+    },
+    {
+      "file": "ailime-decks",
+      "alt": "Two turntables and a mixer lit in red and blue in a dark bar",
+      "caption": "Ailime' sessions · Feb 2023",
+      "src": "ig:CpNqwmrqImp"
+    },
+    {
+      "file": "ailime-room",
+      "alt": "Ailime' at night, the turntables in the foreground and people at the bar",
+      "caption": "Ailime' sessions · Feb 2023",
+      "src": "ig:CpNqwmrqImp"
+    },
+    {
+      "file": "ailime-flyer",
+      "alt": "Flyer: Listening Session #12, always only vinyls, Thursday 9 March from 19:30, Carlo De Marchis",
+      "caption": "Listening Session #12, Ailime' · Mar 2023",
+      "src": "ig:CpSEZSHKBOG",
+      "fit": "contain"
+    },
+    {
+      "file": "offtopic-flyer",
+      "fit": "contain",
+      "alt": "Flyer: Carlo's Turntables, DJ set and brunch, Saturday 11 March, OffTopic, Torino",
+      "caption": "OffTopic brunch flyer · March 2023"
+    },
+    {
+      "file": "white-label",
+      "alt": "A white-label record reading 14-04 DJ-set tutto vinile, spinning",
+      "caption": "14-04, DJ set tutto vinile · Apr 2023",
+      "src": "ig:Cq79qSCpmja"
+    },
+    {
+      "file": "vini-affini-bw",
+      "alt": "Carlo De Marchis with headphones at the turntables, black and white",
+      "caption": "100 Vini & Affini · Apr 2023",
+      "src": "ig:CrDIrR0NWcR"
+    },
+    {
+      "file": "udg-bag",
+      "alt": "A camouflage UDG record bag and a Mastersounds mixer case",
+      "caption": "The bag for Ailime' · Apr 2023",
+      "src": "ig:Cq-wgUBtsEK"
+    },
+    {
+      "file": "lumen-open-air",
+      "alt": "Turntables and speakers set up outdoors in a square, people at tables behind",
+      "caption": "Open air at Lumen Gourmet · 2023",
+      "src": "ig:CuC3F5RtLpV"
+    },
+    {
+      "file": "mixer",
+      "alt": "Close-up of a mixer's faders and knobs in a dark room",
+      "caption": "Mixer · Dec 2023",
+      "src": "ig:C1MTemXtSdI"
+    },
+    {
+      "file": "vermoutheria-flyer",
+      "alt": "Flyer: Carlo's Turntables, DJ set dalla finestrella, 17 February, 22:30",
+      "caption": "Vermoutheria Pelitis, 17 Feb 2024",
+      "src": "ig:C3e65YetBGN",
+      "fit": "contain"
     },
     {
       "file": "studio151",
@@ -286,15 +362,22 @@
       "caption": "Studio151, New York · May 2024"
     },
     {
+      "file": "banco-vini",
+      "alt": "Carlo De Marchis at the turntables in a red-lit wine bar, people at the tables",
+      "caption": "Banco Vini · Apr 2025 · photo @kiarymamy",
+      "src": "ig:DH9qC5yNX47"
+    },
+    {
+      "file": "tono-art-week",
+      "alt": "Flyer: la settimana dell'arte contemporanea da Tono Metzger, carlodemarchis photography beyond photography, Thursday 29 October from 19",
+      "caption": "Tono Metzger, Torino art week · Oct 2026",
+      "src": "ig:DfB7Xw7AGKq",
+      "fit": "contain"
+    },
+    {
       "file": "home-setup",
       "alt": "Two turntables, a rotary mixer and monitor speakers on a desk",
       "caption": "Home setup"
-    },
-    {
-      "file": "offtopic-flyer",
-      "fit": "contain",
-      "alt": "Flyer: Carlo's Turntables, DJ set and brunch, Saturday 11 March, OffTopic, Torino",
-      "caption": "OffTopic brunch flyer · March 2023"
     }
   ],
   "links": [

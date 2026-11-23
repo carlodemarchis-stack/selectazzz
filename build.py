@@ -25,7 +25,13 @@ def src_link(s):
         return "https://cdm.medium.com/carlos-turntable-playlists-2826ab98480c"
     if s.startswith("ig:"):
         return f"https://www.instagram.com/p/{s[3:]}/"
-    return ""
+    return ""  # "carlo": told by Carlo directly, nothing to link
+
+
+def cap(p):
+    """Photo caption, linked to the post it came from when there is one."""
+    href = src_link(p["src"]) if p.get("src") else ""
+    return f'<a href="{href}" target="_blank" rel="noopener">{e(p["caption"])}</a>' if href else e(p["caption"])
 
 
 def umami():
@@ -51,11 +57,13 @@ def dates_section(gigs):
         rows = []
         for g in gs:
             note = f'<span class="nt">{e(g["note"])}</span>' if g.get("note") else ""
-            rows.append(f'<li><a href="{src_link(g["src"])}" target="_blank" rel="noopener">'
-                        f'<span class="no m">{num[id(g)]:03d}</span>'
-                        f'<span class="dt m">{when(g["date"])}</span>'
-                        f'<span class="vn">{e(g["venue"])}{note}</span>'
-                        f'<span class="pl">{e(g.get("place", ""))}</span></a></li>')
+            href = src_link(g["src"])
+            inner = (f'<span class="no m">{num[id(g)]:03d}</span>'
+                     f'<span class="dt m">{when(g["date"])}</span>'
+                     f'<span class="vn">{e(g["venue"])}{note}</span>'
+                     f'<span class="pl">{e(g.get("place", ""))}</span>')
+            rows.append(f'<li><a class="r" href="{href}" target="_blank" rel="noopener">{inner}</a></li>' if href
+                        else f'<li><div class="r">{inner}</div></li>')
         n = len(gs)
         blocks.append(f"""<section class="year">
   <h3><span class="m">{y}</span><span class="m c">{n} {'set' if n == 1 else 'sets'}</span></h3>
@@ -105,7 +113,7 @@ def page():
     hero = DATA["photos"][0]
     photos = "".join(f"""<figure{' class="contain"' if p.get('fit') == 'contain' else ''}>
   <img src="img/{p['file']}-1200.jpg" srcset="img/{p['file']}-600.jpg 600w, img/{p['file']}-1200.jpg 1200w" sizes="(max-width: 700px) 100vw, 33vw" alt="{e(p['alt'])}" loading="lazy">
-  <figcaption class="m">{e(p['caption'])}</figcaption>
+  <figcaption class="m">{cap(p)}</figcaption>
 </figure>""" for p in DATA["photos"][1:])
     links = "".join(f'<li><a href="{e(l["url"])}" target="_blank" rel="noopener"><span class="m">{e(l["label"])}</span>'
                     f'<span>{e(l["handle"])}</span><span class="ar">↗</span></a></li>' for l in DATA["links"])
@@ -156,7 +164,7 @@ def page():
       <div><dt>Since</dt><dd>{first}</dd></div>
     </dl>
   </div>
-  <figure class="hp"><img src="img/{hero['file']}-1200.jpg" srcset="img/{hero['file']}-600.jpg 600w, img/{hero['file']}-1200.jpg 1200w" sizes="(max-width: 860px) 100vw, 42vw" alt="{e(hero['alt'])}"><figcaption class="m">{e(hero['caption'])}</figcaption></figure>
+  <figure class="hp"><img src="img/{hero['file']}-1200.jpg" srcset="img/{hero['file']}-600.jpg 600w, img/{hero['file']}-1200.jpg 1200w" sizes="(max-width: 860px) 100vw, 42vw" alt="{e(hero['alt'])}"><figcaption class="m">{cap(hero)}</figcaption></figure>
 </section>
 
 <section id="about" class="sec">
